@@ -50,7 +50,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Servo channel:  Servo to open left claw:  "left_hand"
  * Servo channel:  Servo to open right claw: "right_hand"
  */
-// This is a big fat test.
+// This is a big fat test
 public class DevBotHardware
 {
     /* Public OpMode members. */

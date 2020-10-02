@@ -50,8 +50,8 @@ import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@TeleOp(name="Pushbot: Teleop POV", group="Pushbot")
-@Disabled
+@TeleOp(name="GoodBot Teleop", group="Pushbot")
+//@Disabled
 public class GoodBotTeleop extends LinearOpMode {
 
     /* Declare OpMode members. */
@@ -102,23 +102,23 @@ public class GoodBotTeleop extends LinearOpMode {
             mecanum_movement_old(gamepad1.left_stick_x, -gamepad1.left_stick_y, -gamepad1.right_stick_x);
 
             // Normalize the values so neither exceed +/- 1.0
-            /**max = Math.max(Math.abs(left), Math.abs(right));
+            /*max = Math.max(Math.abs(left), Math.abs(right));
             if (max > 1.0)
             {
                 left /= max;
                 right /= max;
             }
-            **/
+            */
 
 
-           /** // Send telemetry message to signify robot running;
+           /* // Send telemetry message to signify robot running;
             telemetry.addData("claw",  "Offset = %.2f", clawOffset);
             telemetry.addData("left",  "%.2f", left);
             telemetry.addData("right", "%.2f", right);
-            telemetry.update(); **/
+            telemetry.update();*/
 
             // Pace this loop so jaw action is reasonable speed.
-            sleep(50);
+            //sleep(50);
         }
     }
 

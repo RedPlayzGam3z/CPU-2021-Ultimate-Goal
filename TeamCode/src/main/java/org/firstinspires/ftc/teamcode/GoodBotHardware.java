@@ -81,7 +81,7 @@ public class GoodBotHardware
         rightRear =  hwMap.get(DcMotor.class, "right_rear");
         leftRear =  hwMap.get(DcMotor.class, "left_rear");
         leftFront.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
-        rightFront.setDirection(DcMotor.Direction.REVERSE);// Set to FORWARD if using AndyMark motors
+        rightFront.setDirection(DcMotor.Direction.FORWARD);// Set to FORWARD if using AndyMark motors
         rightRear.setDirection(DcMotor.Direction.REVERSE);
         leftRear.setDirection(DcMotor.Direction.FORWARD);
 

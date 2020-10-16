@@ -37,6 +37,7 @@ import com.qualcomm.robotcore.util.Range;
 //Hiii
 import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
 
+
 /**
  * This OpMode uses the common Pushbot hardware class to define the devices on the robot.
  * All device access is managed through the HardwarePushbot class.
@@ -75,13 +76,19 @@ public class GoodBotTeleop extends LinearOpMode {
         robot.rightRear.setPower(rightRearPower);
     }
 
+    public void mecanum_movement_2020(double forward, double turn, double strafe) {
+        double leftFrontPower = forward + turn + strafe;
+        double leftRearPower = forward + turn - strafe;
+        double rightFrontPower = forward - turn - strafe;
+        double rightRearPower = forward - turn + strafe;
+        robot.leftFront.setPower(leftFrontPower);
+        robot.leftRear.setPower(leftRearPower);
+        robot.rightFront.setPower(rightFrontPower);
+        robot.rightRear.setPower(rightRearPower);
+    }
+
     @Override
     public void runOpMode() {
-        double left;
-        double right;
-        double drive;
-        double max;
-        double turn;
         /* Initialize the hardware variables.
          * The init() method of the hardware class does all the work here
          */
@@ -100,7 +107,7 @@ public class GoodBotTeleop extends LinearOpMode {
         while (opModeIsActive()) {
 
 
-            mecanum_movement_old(gamepad1.left_stick_x, -gamepad1.left_stick_y, -gamepad1.right_stick_x);
+            mecanum_movement_2020(-gamepad1.left_stick_y, gamepad1.right_stick_x, gamepad1.left_stick_x);
 
             // Normalize the values so neither exceed +/- 1.0
             /*max = Math.max(Math.abs(left), Math.abs(right));

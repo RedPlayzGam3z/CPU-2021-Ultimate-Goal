@@ -77,10 +77,10 @@ public class GoodBotTeleop extends LinearOpMode {
     }
 
     public void mecanum_movement_2020(double forward, double turn, double strafe) {
-        double leftFrontPower = forward + turn + strafe;
-        double leftRearPower = forward + turn - strafe;
+        double leftFrontPower = -forward - turn - strafe;
+        double leftRearPower = -forward - turn + strafe;
         double rightFrontPower = forward - turn - strafe;
-        double rightRearPower = forward - turn + strafe;
+        double rightRearPower = -forward + turn - strafe;
         robot.leftFront.setPower(leftFrontPower);
         robot.leftRear.setPower(leftRearPower);
         robot.rightFront.setPower(rightFrontPower);

@@ -33,6 +33,8 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.util.Range;
 //Hiii
 import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
@@ -84,6 +86,12 @@ public class GoodBotTeleop extends LinearOpMode {
         robot.leftRear.setPower(leftRearPower);
         robot.rightFront.setPower(rightFrontPower);
         robot.rightRear.setPower(rightRearPower);
+
+
+        telemetry.addData("Right Front Power:", rightFrontPower);
+        telemetry.addData("Left Front Power:", leftFrontPower);
+        telemetry.addData("Right Rear Power:", rightRearPower);
+        telemetry.addData("Left Rear Power:", leftRearPower);
     }
 
     @Override
@@ -107,6 +115,47 @@ public class GoodBotTeleop extends LinearOpMode {
 
 
             mecanum_movement_2020(-gamepad1.left_stick_y, gamepad1.right_stick_x, gamepad1.left_stick_x);
+
+//            if(gamepad1.left_bumper)
+//            {
+//                robot.clawUp.setTargetPosition(920);
+//                robot.clawUp.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//                robot.clawUp.setPower(.5);
+//                    while (opModeIsActive() && robot.clawUp.isBusy())
+//                    {
+//                        telemetry.addData("Claw Encoder", robot.clawUp.getCurrentPosition() + "  busy=" + robot.clawUp.isBusy());
+//                        telemetry.update();
+//                    }
+//                robot.clawUp.setPower(0);
+//            }
+//            else if(gamepad1.right_bumper)
+//            {
+//                robot.clawUp.setTargetPosition(0);
+//                robot.clawUp.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//                robot.clawUp.setPower(-.5);
+//                    while (opModeIsActive() && robot.clawUp.isBusy())
+//                    {
+//                        telemetry.addData("encoder at: ", robot.clawUp.getCurrentPosition() + "  busy=" + robot.clawUp.isBusy());
+//                        telemetry.update();
+//                    }
+//                robot.clawUp.setPower(0);
+//            }
+
+            robot.clawUp.setPower(gamepad2.left_stick_y);
+            robot.clawGrip.setPower(gamepad2.right_stick_x);
+
+//            if (gamepad1.right_trigger > 0)
+//                robot.clawGrip.setPower(gamepad1.right_trigger);
+//            else if (gamepad1.left_trigger > 0)
+//                robot.clawGrip.setPower(-gamepad1.left_trigger);
+//            else
+//                robot.clawGrip.setPower(0);
+
+
+
+            telemetry.addData("Claw Vertical Power: ", robot.clawUp.getPower());
+            telemetry.addData("Claw Grip Power: ", robot.clawGrip.getPower());
+            telemetry.update();
 
             // Normalize the values so neither exceed +/- 1.0
             /*max = Math.max(Math.abs(left), Math.abs(right));

@@ -61,7 +61,7 @@ public class GoodBotTeleop extends LinearOpMode {
     /* Declare OpMode members. */
     GoodBotHardware robot           = new GoodBotHardware();   // Use a Pushbot's hardware
     double          clawOffset      = 0;                       // Servo mid position
-    final double    CLAW_SPEED      = 0.02 ;                   // sets rate to move servo
+    final double    CLAW_SPEED      = 0.02 ;                   // sets rate to move servodh
     public void mecanum_movement_old(double x_power, double y_power, double z_power) {
         /*
         This block calculates the power needed at each wheel. An explanation for how it works can be

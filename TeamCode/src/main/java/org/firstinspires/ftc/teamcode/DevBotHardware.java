@@ -30,6 +30,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -60,6 +61,9 @@ public class DevBotHardware
     public DcMotor  leftRear    = null;
     public DcMotor  rightRear   = null;
 
+    //Flippy boy
+    public DcMotor  yeet        = null;
+
 
     /* local OpMode members. */
     HardwareMap hwMap           =  null;
@@ -85,11 +89,15 @@ public class DevBotHardware
         rightRear.setDirection(DcMotor.Direction.REVERSE);
         leftRear.setDirection(DcMotor.Direction.FORWARD);
 
+        yeet    =   hwMap.get(DcMotor.class, "yeet");
+        yeet.setDirection(DcMotor.Direction.FORWARD);
+
         // Set all motors to zero power
         leftFront.setPower(0);
         rightFront.setPower(0);
         rightRear.setPower(0);
         leftRear.setPower(0);
+        yeet.setPower(0);
 
         // Set all motors to run without encoders.
         // May want to use RUN_USING_ENCODERS if encoders are installed.
@@ -97,6 +105,7 @@ public class DevBotHardware
         rightFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightRear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         leftRear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        yeet.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         // Define and initialize ALL installed servos.
     }

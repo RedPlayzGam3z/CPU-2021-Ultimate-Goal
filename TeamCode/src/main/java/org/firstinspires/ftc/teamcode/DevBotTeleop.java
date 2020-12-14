@@ -57,13 +57,12 @@ public class DevBotTeleop extends LinearOpMode {
 
     /* Declare OpMode members. */
     DevBotHardware robot           = new DevBotHardware();   // Use a Pushbot's hardware
-    double          clawOffset      = 0;                       // Servo mid position
-    final double    CLAW_SPEED      = 0.02 ;                   // sets rate to move servo
+
     public void mecanum_movement_2020(double forward, double turn, double strafe) {
-        double leftFrontPower = -forward - turn - strafe;
-        double leftRearPower = -forward - turn + strafe;
+        double leftFrontPower = forward + turn + strafe;
+        double leftRearPower = forward + turn - strafe;
         double rightFrontPower = forward - turn - strafe;
-        double rightRearPower = -forward + turn - strafe;
+        double rightRearPower = forward - turn + strafe;
         robot.leftFront.setPower(leftFrontPower);
         robot.leftRear.setPower(leftRearPower);
         robot.rightFront.setPower(rightFrontPower);
@@ -72,12 +71,6 @@ public class DevBotTeleop extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        double left;
-        double right;
-        double drive;
-        double turn;
-        double max;
-
         /* Initialize the hardware variables.
          * The init() method of the hardware class does all the work here
          */
@@ -94,7 +87,9 @@ public class DevBotTeleop extends LinearOpMode {
         while (opModeIsActive()) {
 
 
-            mecanum_movement_2020(-gamepad1.left_stick_y, gamepad1.right_stick_x, gamepad1.left_stick_x);
+            mecanum_movement_2020(gamepad1.left_stick_y, -gamepad1.right_stick_x, -gamepad1.left_stick_x);
+
+
         }
     }
 }

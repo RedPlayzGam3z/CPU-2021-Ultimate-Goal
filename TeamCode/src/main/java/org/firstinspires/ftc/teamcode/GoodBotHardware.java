@@ -29,6 +29,7 @@
 
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -60,6 +61,12 @@ public class GoodBotHardware
     public DcMotor  leftRear    = null;
     public DcMotor  rightRear   = null;
 
+    //Claw Hardware
+    public DcMotor  clawUp      = null;
+    public CRServo clawGrip    = null;
+
+    //Flippy boy
+    //public DcMotor  yeet        = null;
 
     /* local OpMode members. */
     HardwareMap hwMap           = null;
@@ -76,20 +83,26 @@ public class GoodBotHardware
         hwMap = ahwMap;
 
         // Define and Initialize Motors
-        leftFront  = hwMap.get(DcMotor.class, "left_front");
-        rightFront = hwMap.get(DcMotor.class, "right_front");
-        rightRear =  hwMap.get(DcMotor.class, "right_rear");
-        leftRear =  hwMap.get(DcMotor.class, "left_rear");
+        leftFront   = hwMap.get(DcMotor.class, "left_front");
+        rightFront  = hwMap.get(DcMotor.class, "right_front");
+        rightRear   = hwMap.get(DcMotor.class, "right_rear");
+        leftRear    = hwMap.get(DcMotor.class, "left_rear");
         leftFront.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         rightFront.setDirection(DcMotor.Direction.FORWARD);// Set to FORWARD if using AndyMark motors
         rightRear.setDirection(DcMotor.Direction.REVERSE);
         leftRear.setDirection(DcMotor.Direction.FORWARD);
+        clawUp      = hwMap.get(DcMotor.class, "clawUp");
+        //yeet        = hwMap.get(DcMotor.class, "yeet");
+        clawUp.setDirection(DcMotor.Direction.FORWARD);
+        //yeet.setDirection(DcMotor.Direction.FORWARD);
 
         // Set all motors to zero power
         leftFront.setPower(0);
         rightFront.setPower(0);
         rightRear.setPower(0);
         leftRear.setPower(0);
+        clawUp.setPower(0);
+        //yeet.setPower(0);
 
         // Set all motors to run without encoders.
         // May want to use RUN_USING_ENCODERS if encoders are installed.
@@ -97,9 +110,14 @@ public class GoodBotHardware
         rightFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightRear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         leftRear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        clawUp.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        clawUp.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //yeet.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         // Define and initialize ALL installed servos.
 
+        clawGrip    = hwMap.get(CRServo.class, "clawGrip");
+        clawGrip.setPower(0);
     }
  }
 

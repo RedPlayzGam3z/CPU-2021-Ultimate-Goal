@@ -110,8 +110,7 @@ public class GoodBotHardware
         rightFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightRear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         leftRear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        clawUp.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        clawUp.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        clawUp.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         //yeet.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         // Define and initialize ALL installed servos.

@@ -116,40 +116,38 @@ public class GoodBotTeleop extends LinearOpMode {
 
             mecanum_movement_2020(-gamepad1.left_stick_y, gamepad1.right_stick_x, gamepad1.left_stick_x);
 
-//            if(gamepad1.left_bumper)
-//            {
-//                robot.clawUp.setTargetPosition(920);
-//                robot.clawUp.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//                robot.clawUp.setPower(.5);
-//                    while (opModeIsActive() && robot.clawUp.isBusy())
-//                    {
-//                        telemetry.addData("Claw Encoder", robot.clawUp.getCurrentPosition() + "  busy=" + robot.clawUp.isBusy());
-//                        telemetry.update();
-//                    }
-//                robot.clawUp.setPower(0);
-//            }
-//            else if(gamepad1.right_bumper)
-//            {
-//                robot.clawUp.setTargetPosition(0);
-//                robot.clawUp.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//                robot.clawUp.setPower(-.5);
-//                    while (opModeIsActive() && robot.clawUp.isBusy())
-//                    {
-//                        telemetry.addData("encoder at: ", robot.clawUp.getCurrentPosition() + "  busy=" + robot.clawUp.isBusy());
-//                        telemetry.update();
-//                    }
-//                robot.clawUp.setPower(0);
-//            }
+            if(gamepad1.left_bumper)
+            {
+                robot.clawUp.setTargetPosition(829);
+                robot.clawUp.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                robot.clawUp.setPower(.05);
+                    while (opModeIsActive() && robot.clawUp.isBusy())
+                    {
+                        telemetry.addData("Claw Encoder", robot.clawUp.getCurrentPosition() + "  busy=" + robot.clawUp.isBusy());
+                        telemetry.update();
+                    }
+                robot.clawUp.setPower(0);
+            }
+            else if(gamepad1.right_bumper)
+            {
+                robot.clawUp.setTargetPosition(0);
+                robot.clawUp.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                robot.clawUp.setPower(-.05);
+                    while (opModeIsActive() && robot.clawUp.isBusy())
+                    {
+                        telemetry.addData("encoder at: ", robot.clawUp.getCurrentPosition() + "  busy=" + robot.clawUp.isBusy());
+                        telemetry.update();
+                    }
+                robot.clawUp.setPower(0);
+            }
 
-            robot.clawUp.setPower(gamepad2.left_stick_y);
-            robot.clawGrip.setPower(gamepad2.right_stick_x);
 
-//            if (gamepad1.right_trigger > 0)
-//                robot.clawGrip.setPower(gamepad1.right_trigger);
-//            else if (gamepad1.left_trigger > 0)
-//                robot.clawGrip.setPower(-gamepad1.left_trigger);
-//            else
-//                robot.clawGrip.setPower(0);
+            if (gamepad1.right_trigger > 0)
+                robot.clawGrip.setPower(gamepad1.right_trigger);
+            else if (gamepad1.left_trigger > 0)
+                robot.clawGrip.setPower(-gamepad1.left_trigger);
+            else
+                robot.clawGrip.setPower(0);
 
 
 

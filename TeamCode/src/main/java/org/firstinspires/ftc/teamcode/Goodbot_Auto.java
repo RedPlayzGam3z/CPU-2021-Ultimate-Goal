@@ -83,11 +83,13 @@ public class Goodbot_Auto extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
+
+
         robot.leftFront.setPower(1);
         robot.leftRear.setPower(1);
         robot.rightFront.setPower(1);
         robot.rightRear.setPower(1);
-       sleep(5000);
+        sleep(2000);
 
        robot.leftFront.setPower(0);
         robot.leftRear.setPower(0);
@@ -99,11 +101,13 @@ public class Goodbot_Auto extends LinearOpMode {
         robot.leftRear.setPower(-1);
         robot.rightFront.setPower(1);
         robot.rightRear.setPower(1);
+        sleep(2000);
 
-
-
-
-
-
+        telemetry.addData("Right Front Power:", robot.rightFront.getPower());
+        telemetry.addData("Left Front Power:", robot.rightRear.getPower());
+        telemetry.addData("Right Rear Power:", robot.leftFront.getPower());
+        telemetry.addData("Left Rear Power:", robot.leftRear.getPower());
+    }
+        .
     }
 }

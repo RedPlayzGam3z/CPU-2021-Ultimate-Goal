@@ -118,7 +118,7 @@ public class GoodBotTeleop extends LinearOpMode {
 
             if(gamepad1.left_bumper)
             {
-                robot.clawUp.setTargetPosition(829);
+                robot.clawUp.setTargetPosition(500);
                 robot.clawUp.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 robot.clawUp.setPower(.05);
                     while (opModeIsActive() && robot.clawUp.isBusy())
@@ -130,7 +130,7 @@ public class GoodBotTeleop extends LinearOpMode {
             }
             else if(gamepad1.right_bumper)
             {
-                robot.clawUp.setTargetPosition(0);
+                robot.clawUp.setTargetPosition(50);
                 robot.clawUp.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 robot.clawUp.setPower(-.05);
                     while (opModeIsActive() && robot.clawUp.isBusy())

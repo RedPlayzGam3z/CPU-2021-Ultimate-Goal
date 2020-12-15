@@ -68,7 +68,7 @@ public class PushbotAutoDriveByTime_Linear extends LinearOpMode {
     static final double     TURN_SPEED    = 0.5;
 
     @Override
-    public void runOpMode() {b
+    public void runOpMode() {
 
         /*
          * Initialize the drive system variables.

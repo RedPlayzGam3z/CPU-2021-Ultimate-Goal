@@ -142,12 +142,13 @@ public class GoodBotTeleop extends LinearOpMode {
             }
 
 
-            if (gamepad1.right_trigger > 0)
-                robot.clawGrip.setPower(gamepad1.right_trigger);
-            else if (gamepad1.left_trigger > 0)
-                robot.clawGrip.setPower(-gamepad1.left_trigger);
+            if (gamepad2.right_bumper)  //This should open/close the claw, currently does not work
+                robot.clawGrip.setPower(1);//                          need to find out why
+            else if (gamepad2.left_bumper)
+                robot.clawGrip.setPower(-1);
             else
                 robot.clawGrip.setPower(0);
+
 
 
 

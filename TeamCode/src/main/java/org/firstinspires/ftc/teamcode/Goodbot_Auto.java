@@ -95,16 +95,61 @@ public class Goodbot_Auto extends LinearOpMode {
         robot.leftRear.setPower(0);
         robot.rightFront.setPower(0);
         robot.rightRear.setPower(0);
-        sleep(3000);
+        sleep(1000);
+
+        robot.leftFront.setPower(1);
+        robot.leftRear.setPower(1);
+        robot.rightFront.setPower(-1);
+        robot.rightRear.setPower(-1);
+        sleep(900);
+
+        robot.leftFront.setPower(0);
+        robot.leftRear.setPower(0);
+        robot.rightFront.setPower(0);
+        robot.rightRear.setPower(0);
+        sleep(1000);
 
         robot.leftFront.setPower(1);
         robot.leftRear.setPower(1);
         robot.rightFront.setPower(1);
         robot.rightRear.setPower(1);
-        sleep(2000);
+        sleep(1000);
+        
+        robot.leftFront.setPower(0);
+        robot.leftRear.setPower(0);
+        robot.rightFront.setPower(0);
+        robot.rightRear.setPower(0);
+        sleep(1000);
 
-        robot.clawUp.setPower(0.03);
-        sleep(2000);
+
+        robot.leftFront.setPower(1);
+        robot.leftRear.setPower(1);
+        robot.rightFront.setPower(-1);
+        robot.rightRear.setPower(-1);
+        sleep(1900);
+
+
+        robot.leftFront.setPower(0);
+        robot.leftRear.setPower(0);
+        robot.rightFront.setPower(0);
+        robot.rightRear.setPower(0);
+        sleep(1000);
+
+        robot.leftFront.setPower(1);
+        robot.leftRear.setPower(1);
+        robot.rightFront.setPower(1);
+        robot.rightRear.setPower(1);
+        sleep(1000);
+
+        robot.leftFront.setPower(0);
+        robot.leftRear.setPower(0);
+        robot.rightFront.setPower(0);
+        robot.rightRear.setPower(0);
+        sleep(1000);
+
+
+        robot.clawUp.setPower(0.5);
+        sleep(85);
 
 
 

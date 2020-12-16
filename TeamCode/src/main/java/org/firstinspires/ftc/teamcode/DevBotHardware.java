@@ -60,6 +60,7 @@ public class DevBotHardware
     public DcMotor  rightFront  = null;
     public DcMotor  leftRear    = null;
     public DcMotor  rightRear   = null;
+    public Servo    stupidTest  = null;
 
     //Flippy boy
     public DcMotor  yeet        = null;
@@ -92,6 +93,9 @@ public class DevBotHardware
         yeet    =   hwMap.get(DcMotor.class, "yeet");
         yeet.setDirection(DcMotor.Direction.FORWARD);
 
+
+
+        stupidTest = hwMap.get(Servo.class, "stupidTest");
         // Set all motors to zero power
         leftFront.setPower(0);
         rightFront.setPower(0);

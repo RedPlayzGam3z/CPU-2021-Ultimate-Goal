@@ -54,7 +54,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Sherri Auto", group="Pushbot")
+@Autonomous(name="Left Autonomous", group="Pushbot")
 //@Disabled
 public class DevBot_Auto extends LinearOpMode {
 
@@ -144,8 +144,7 @@ public class DevBot_Auto extends LinearOpMode {
         sleep(1000);
 
 
-        robot.clawUp.setPower(0.5);
-        sleep(85);
+        
 
 
 

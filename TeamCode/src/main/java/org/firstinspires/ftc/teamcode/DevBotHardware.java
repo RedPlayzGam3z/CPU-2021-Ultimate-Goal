@@ -61,6 +61,7 @@ public class DevBotHardware
     public DcMotor  rightFront  = null;
     public DcMotor  leftRear    = null;
     public DcMotor  rightRear   = null;
+    public Servo    stupidTest  = null;
 
     //Lifty Boi
     public DcMotor  leftUp      = null;
@@ -100,6 +101,9 @@ public class DevBotHardware
         dropBoi.setDirection(DcMotor.Direction.FORWARD);
         noBreak     = hwMap.get(TouchSensor.class, "button");
 
+
+
+        stupidTest = hwMap.get(Servo.class, "stupidTest");
         // Set all motors to zero power
         leftFront.setPower(0);
         rightFront.setPower(0);

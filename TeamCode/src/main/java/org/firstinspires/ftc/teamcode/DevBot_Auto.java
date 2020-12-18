@@ -82,47 +82,24 @@ public class DevBot_Auto extends LinearOpMode {
 
 
         robot.leftFront.setPower(1);
-        robot.leftRear.setPower(1);
-        robot.rightFront.setPower(1);
-        robot.rightRear.setPower(1);
-        sleep(2000);
-
-       robot.leftFront.setPower(0);
-        robot.leftRear.setPower(0);
-        robot.rightFront.setPower(0);
-        robot.rightRear.setPower(0);
-        sleep(1000);
-
-        robot.leftFront.setPower(1);
-        robot.leftRear.setPower(1);
+        robot.leftRear.setPower(-1);
         robot.rightFront.setPower(-1);
-        robot.rightRear.setPower(-1);
-        sleep(900);
+        robot.rightRear.setPower(1);
+        sleep(850);
 
         robot.leftFront.setPower(0);
         robot.leftRear.setPower(0);
         robot.rightFront.setPower(0);
         robot.rightRear.setPower(0);
         sleep(1000);
+
+
 
         robot.leftFront.setPower(1);
         robot.leftRear.setPower(1);
         robot.rightFront.setPower(1);
         robot.rightRear.setPower(1);
-        sleep(1000);
-        
-        robot.leftFront.setPower(0);
-        robot.leftRear.setPower(0);
-        robot.rightFront.setPower(0);
-        robot.rightRear.setPower(0);
-        sleep(1000);
-
-
-        robot.leftFront.setPower(1);
-        robot.leftRear.setPower(1);
-        robot.rightFront.setPower(-1);
-        robot.rightRear.setPower(-1);
-        sleep(1900);
+        sleep(5000);
 
 
         robot.leftFront.setPower(0);
@@ -131,20 +108,9 @@ public class DevBot_Auto extends LinearOpMode {
         robot.rightRear.setPower(0);
         sleep(1000);
 
-        robot.leftFront.setPower(1);
-        robot.leftRear.setPower(1);
-        robot.rightFront.setPower(1);
-        robot.rightRear.setPower(1);
-        sleep(1000);
-
-        robot.leftFront.setPower(0);
-        robot.leftRear.setPower(0);
-        robot.rightFront.setPower(0);
-        robot.rightRear.setPower(0);
-        sleep(1000);
 
 
-        
+
 
 
 

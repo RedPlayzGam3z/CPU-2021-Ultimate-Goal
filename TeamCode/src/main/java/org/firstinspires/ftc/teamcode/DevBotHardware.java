@@ -33,6 +33,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
@@ -62,9 +63,11 @@ public class DevBotHardware
     public DcMotor  rightRear   = null;
     public Servo    stupidTest  = null;
 
-    //Flippy boy
-    public DcMotor  yeet        = null;
-
+    //Lifty Boi
+    public DcMotor  leftUp      = null;
+    public DcMotor  rightUp     = null;
+    public DcMotor  dropBoi     = null;
+    public TouchSensor noBreak  = null;
 
     /* local OpMode members. */
     HardwareMap hwMap           =  null;
@@ -81,17 +84,22 @@ public class DevBotHardware
         hwMap = ahwMap;
 
         // Define and Initialize Motors
-        leftFront  = hwMap.get(DcMotor.class, "left_front");
-        rightFront = hwMap.get(DcMotor.class, "right_front");
-        rightRear =  hwMap.get(DcMotor.class, "right_rear");
-        leftRear =  hwMap.get(DcMotor.class, "left_rear");
+        leftFront   = hwMap.get(DcMotor.class, "left_front");
+        rightFront  = hwMap.get(DcMotor.class, "right_front");
+        rightRear   = hwMap.get(DcMotor.class, "right_rear");
+        leftRear    = hwMap.get(DcMotor.class, "left_rear");
         leftFront.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         rightFront.setDirection(DcMotor.Direction.FORWARD);// Set to FORWARD if using AndyMark motors
         rightRear.setDirection(DcMotor.Direction.REVERSE);
         leftRear.setDirection(DcMotor.Direction.FORWARD);
 
-        yeet    =   hwMap.get(DcMotor.class, "yeet");
-        yeet.setDirection(DcMotor.Direction.FORWARD);
+        leftUp      = hwMap.get(DcMotor.class, "left_lift");
+        rightUp     = hwMap.get(DcMotor.class, "right_lift");
+        dropBoi     = hwMap.get(DcMotor.class, "lift_end");
+        leftUp.setDirection(DcMotor.Direction.FORWARD);
+        rightUp.setDirection(DcMotor.Direction.REVERSE);
+        dropBoi.setDirection(DcMotor.Direction.FORWARD);
+        noBreak     = hwMap.get(TouchSensor.class, "button");
 
 
 
@@ -101,7 +109,10 @@ public class DevBotHardware
         rightFront.setPower(0);
         rightRear.setPower(0);
         leftRear.setPower(0);
-        yeet.setPower(0);
+
+        leftUp.setPower(0);
+        rightUp.setPower(0);
+        dropBoi.setPower(0);
 
         // Set all motors to run without encoders.
         // May want to use RUN_USING_ENCODERS if encoders are installed.
@@ -109,9 +120,23 @@ public class DevBotHardware
         rightFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightRear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         leftRear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        yeet.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        leftUp.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightUp.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        dropBoi.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         // Define and initialize ALL installed servos.
+
+
+        //Reset lift position
+        while(!noBreak.isPressed()) {
+            rightUp.setPower(-.1);
+            leftUp.setPower(-.1);
+        }
+        leftUp.setPower(0);
+        rightUp.setPower(0);
+
+        //TODO: Figure out how to reset drop position, encoders?
     }
  }
 

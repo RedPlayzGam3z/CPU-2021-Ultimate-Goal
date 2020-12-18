@@ -69,6 +69,15 @@ public class DevBotTeleop extends LinearOpMode {
         robot.rightRear.setPower(rightRearPower);
     }
 
+    public void lift_reset() {
+        while(!robot.noBreak.isPressed()) {
+            robot.rightUp.setPower(-.1);
+            robot.leftUp.setPower(-.1);
+        }
+        robot.leftUp.setPower(0);
+        robot.rightUp.setPower(0);
+    }
+
     @Override
     public void runOpMode() {
         /* Initialize the hardware variables.
@@ -90,6 +99,16 @@ public class DevBotTeleop extends LinearOpMode {
             mecanum_movement_2020(gamepad1.left_stick_y, -gamepad1.right_stick_x, -gamepad1.left_stick_x);
             
 
+            if(!robot.noBreak.isPressed()) {
+                robot.rightUp.setPower(gamepad2.left_stick_y);
+                robot.leftUp.setPower(gamepad2.left_stick_y);
+            }
+            else if (robot.noBreak.isPressed() && (gamepad2.left_stick_y >= 0)) {
+                robot.rightUp.setPower(gamepad2.left_stick_y);
+                robot.leftUp.setPower(gamepad2.left_stick_y);
+            }
+
+            robot.dropBoi.setPower(gamepad2.right_stick_y);
 
         }
     }

@@ -52,7 +52,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Servo channel:  Servo to open left claw:  "left_hand"
  * Servo channel:  Servo to open right claw: "right_hand"
  */
-public class DevBotHardware
+public class GoodBotHardware
 {
     /* Public OpMode members. */
     //Drive Motors
@@ -118,5 +118,4 @@ public class DevBotHardware
         clawGrip    = hwMap.get(CRServo.class, "clawGrip");
         clawGrip.setPower(0);
     }
- }
-
+}

@@ -116,64 +116,42 @@ public class GoodBotTeleop extends LinearOpMode {
 
             mecanum_movement_2020(-gamepad1.left_stick_y, gamepad1.right_stick_x, gamepad1.left_stick_x);
 
-            if(gamepad1.left_bumper)
-            {
-                robot.clawUp.setTargetPosition(500);
-                robot.clawUp.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                robot.clawUp.setPower(.05);
-                    while (opModeIsActive() && robot.clawUp.isBusy())
-                    {
-                        telemetry.addData("Claw Encoder", robot.clawUp.getCurrentPosition() + "  busy=" + robot.clawUp.isBusy());
-                        telemetry.update();
-                    }
-                robot.clawUp.setPower(0);
-            }
-            else if(gamepad1.right_bumper)
-            {
-                robot.clawUp.setTargetPosition(50);
-                robot.clawUp.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                robot.clawUp.setPower(-.05);
-                    while (opModeIsActive() && robot.clawUp.isBusy())
-                    {
-                        telemetry.addData("encoder at: ", robot.clawUp.getCurrentPosition() + "  busy=" + robot.clawUp.isBusy());
-                        telemetry.update();
-                    }
-                robot.clawUp.setPower(0);
-            }
-
-
-            if (gamepad2.right_bumper)  //This should open/close the claw, currently does not work
-                robot.clawGrip.setPower(1);//                          need to find out why
-            else if (gamepad2.left_bumper)
-                robot.clawGrip.setPower(-1);
-            else
-                robot.clawGrip.setPower(0);
-
-
-
-
-            telemetry.addData("Claw Vertical Power: ", robot.clawUp.getPower());
-            telemetry.addData("Claw Grip Power: ", robot.clawGrip.getPower());
-            telemetry.update();
-
-            // Normalize the values so neither exceed +/- 1.0
-            /*max = Math.max(Math.abs(left), Math.abs(right));
-            if (max > 1.0)
-            {
-                left /= max;
-                right /= max;
-            }
-            */
-
-
-           /* // Send telemetry message to signify robot running;
-            telemetry.addData("claw",  "Offset = %.2f", clawOffset);
-            telemetry.addData("left",  "%.2f", left);
-            telemetry.addData("right", "%.2f", right);
-            telemetry.update();*/
-
-            // Pace this loop so jaw action is reasonable speed.
-            //sleep(50);
+//            if(gamepad1.left_bumper)
+//            {
+//                robot.clawUp.setTargetPosition(500);
+//                robot.clawUp.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//                robot.clawUp.setPower(.05);
+//                    while (opModeIsActive() && robot.clawUp.isBusy())
+//                    {
+//                        telemetry.addData("Claw Encoder", robot.clawUp.getCurrentPosition() + "  busy=" + robot.clawUp.isBusy());
+//                        telemetry.update();
+//                    }
+//                robot.clawUp.setPower(0);
+//            }
+//            else if(gamepad1.right_bumper)
+//            {
+//                robot.clawUp.setTargetPosition(50);
+//                robot.clawUp.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//                robot.clawUp.setPower(-.05);
+//                    while (opModeIsActive() && robot.clawUp.isBusy())
+//                    {
+//                        telemetry.addData("encoder at: ", robot.clawUp.getCurrentPosition() + "  busy=" + robot.clawUp.isBusy());
+//                        telemetry.update();
+//                    }
+//                robot.clawUp.setPower(0);
+//            }
+//
+//
+//            if (gamepad2.right_bumper)  //This should open/close the claw, currently does not work
+//                robot.clawGrip.setPower(1);//                          need to find out why
+//            else if (gamepad2.left_bumper)
+//                robot.clawGrip.setPower(-1);
+//            else
+//                robot.clawGrip.setPower(0)
+//
+//            telemetry.addData("Claw Vertical Power: ", robot.clawUp.getPower());
+//            telemetry.addData("Claw Grip Power: ", robot.clawGrip.getPower());
+//            telemetry.update();
         }
     }
 

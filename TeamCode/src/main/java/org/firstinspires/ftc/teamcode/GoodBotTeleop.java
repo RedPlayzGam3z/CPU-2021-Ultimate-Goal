@@ -30,14 +30,10 @@
 package org.firstinspires.ftc.teamcode;
 // This is a test.
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.CRServo;
-import com.qualcomm.robotcore.util.Range;
 //Hiii
-import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
 
 
 /**

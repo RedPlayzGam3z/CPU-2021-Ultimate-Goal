@@ -56,10 +56,10 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous(name="Sherri Auto", group="Pushbot")
 //@Disabled
-public class Goodbot_Auto extends LinearOpMode {
+public class DevBot_Auto extends LinearOpMode {
 
     /* Declare OpMode members. */
-    GoodBotHardware robot   = new GoodBotHardware();   // Use a Pushbot's hardware
+    DevBotHardware robot   = new DevBotHardware();   // Use a Pushbot's hardware
     private ElapsedTime     runtime = new ElapsedTime();
 
 

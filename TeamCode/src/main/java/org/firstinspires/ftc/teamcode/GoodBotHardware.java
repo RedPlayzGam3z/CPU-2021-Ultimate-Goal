@@ -34,6 +34,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
@@ -61,9 +62,11 @@ public class GoodBotHardware
     public DcMotor  leftRear    = null;
     public DcMotor  rightRear   = null;
 
-    //Claw Hardware
-    public DcMotor  clawUp      = null;
-    public CRServo clawGrip    = null;
+    //Lifty Boi
+    public DcMotor  leftUp      = null;
+    public DcMotor  rightUp     = null;
+    public DcMotor  dropBoi     = null;
+    public TouchSensor noBreak  = null;
 
     //Flippy boy
     //public DcMotor  yeet        = null;
@@ -91,9 +94,9 @@ public class GoodBotHardware
         rightFront.setDirection(DcMotor.Direction.FORWARD);// Set to FORWARD if using AndyMark motors
         rightRear.setDirection(DcMotor.Direction.FORWARD);
         leftRear.setDirection(DcMotor.Direction.REVERSE);
-        clawUp      = hwMap.get(DcMotor.class, "clawUp");
+        //clawUp      = hwMap.get(DcMotor.class, "clawUp");
         //yeet        = hwMap.get(DcMotor.class, "yeet");
-        clawUp.setDirection(DcMotor.Direction.FORWARD);
+        //clawUp.setDirection(DcMotor.Direction.FORWARD);
         //yeet.setDirection(DcMotor.Direction.FORWARD);
 
         // Set all motors to zero power
@@ -101,7 +104,7 @@ public class GoodBotHardware
         rightFront.setPower(0);
         rightRear.setPower(0);
         leftRear.setPower(0);
-        clawUp.setPower(0);
+        //clawUp.setPower(0);
         //yeet.setPower(0);
 
         // Set all motors to run without encoders.
@@ -110,12 +113,34 @@ public class GoodBotHardware
         rightFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightRear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         leftRear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        clawUp.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        //clawUp.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         //yeet.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        leftUp      = hwMap.get(DcMotor.class, "left_lift");
+        rightUp     = hwMap.get(DcMotor.class, "right_lift");
+        dropBoi     = hwMap.get(DcMotor.class, "lift_end");
+        leftUp.setDirection(DcMotor.Direction.FORWARD);
+        rightUp.setDirection(DcMotor.Direction.REVERSE);
+        dropBoi.setDirection(DcMotor.Direction.FORWARD);
+        noBreak     = hwMap.get(TouchSensor.class, "button");
+
+        leftUp.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightUp.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        dropBoi.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         // Define and initialize ALL installed servos.
 
-        clawGrip    = hwMap.get(CRServo.class, "clawGrip");
-        clawGrip.setPower(0);
+        //clawGrip    = hwMap.get(CRServo.class, "clawGrip");
+        //clawGrip.setPower(0);
+
+
+
+        while(!noBreak.isPressed()) {
+            rightUp.setPower(-.3);
+            leftUp.setPower(-.3);
+        }
+        rightUp.setPower(0);
+        leftUp.setPower(0);
+
     }
 }

@@ -144,7 +144,7 @@ public class Goodbot_Auto extends LinearOpMode {
         sleep(1000);
 
 
-        robot.clawUp.setPower(0.5);
+        //robot.clawUp.setPower(0.5);
         sleep(85);
 
 

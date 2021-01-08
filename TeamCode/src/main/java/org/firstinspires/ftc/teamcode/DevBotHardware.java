@@ -126,13 +126,13 @@ public class DevBotHardware
 
         //Reset lift position
         while(!noBreak.isPressed()) {
-            rightUp.setPower(-.1);
-            leftUp.setPower(-.1);
+            rightUp.setPower(-.40);
+            leftUp.setPower(-.40);
         }
         rightUp.setPower(0);
         leftUp.setPower(0);
 
-        //TODO: Figure out how to reset drop position, encoders?
+        //TODO: Figure out how to reset drop position, encoders? ***TEST FURTHER: It resets itself?***
     }
  }
 

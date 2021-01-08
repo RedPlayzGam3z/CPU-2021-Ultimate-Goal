@@ -136,8 +136,8 @@ public class GoodBotHardware
 
 
         while(!noBreak.isPressed()) {
-            rightUp.setPower(-.3);
-            leftUp.setPower(-.3);
+            rightUp.setPower(-.40);
+            leftUp.setPower(-.40);
         }
         rightUp.setPower(0);
         leftUp.setPower(0);

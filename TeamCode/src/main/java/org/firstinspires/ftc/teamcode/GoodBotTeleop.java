@@ -112,19 +112,39 @@ public class GoodBotTeleop extends LinearOpMode {
 
             mecanum_movement_2020(-gamepad1.left_stick_y, gamepad1.right_stick_x, gamepad1.left_stick_x);
 
-            if(!robot.noBreak.isPressed()) {
-                robot.rightUp.setPower(-gamepad2.left_stick_y/3);
-                robot.leftUp.setPower(-gamepad2.left_stick_y/3);
-                robot.dropBoi.setPower(-gamepad2.left_stick_y/10);
+
+            if (gamepad2.left_bumper && robot.noBreak.isPressed() && (gamepad2.left_stick_y >= 0)) {
+                robot.rightUp.setPower(gamepad2.left_stick_y*.50);
+                robot.leftUp.setPower(gamepad2.left_stick_y*.50);
             }
-            else if (robot.noBreak.isPressed() && (gamepad2.left_stick_y <= 0)) {
-                robot.rightUp.setPower(-gamepad2.left_stick_y/3);
-                robot.leftUp.setPower(-gamepad2.left_stick_y/3);
-                robot.dropBoi.setPower(-gamepad2.left_stick_y/10);
+            else if (gamepad2.left_bumper && !robot.noBreak.isPressed()) {
+                robot.rightUp.setPower(gamepad2.left_stick_y*.50);
+                robot.leftUp.setPower(gamepad2.left_stick_y*.50);
+            }
+//            else if (gamepad2.right_bumper && robot.noBreak.isPressed() && (gamepad2.left_stick_y >= 0)) {
+//                robot.rightUp.setPower(gamepad2.left_stick_y);
+//                robot.leftUp.setPower(gamepad2.left_stick_y);
+//            }
+//            else if (gamepad2.right_bumper && !robot.noBreak.isPressed()){
+//                robot.rightUp.setPower(gamepad2.left_stick_y);
+//                robot.leftUp.setPower(gamepad2.left_stick_y);
+//            }
+            else if(robot.noBreak.isPressed() && (gamepad2.left_stick_y >= 0)) {
+                robot.rightUp.setPower(gamepad2.left_stick_y * .33);
+                robot.leftUp.setPower(gamepad2.left_stick_y * .33);
+            }
+            else if (!robot.noBreak.isPressed()) {
+                robot.rightUp.setPower(gamepad2.left_stick_y*.33);
+                robot.leftUp.setPower(gamepad2.left_stick_y*.33);
             }
 
-            robot.dropBoi.setPower(gamepad2.right_stick_y/5);
 
+            if (gamepad2.right_bumper){
+                robot.dropBoi.setPower(gamepad2.right_stick_y*.50);  //Remove some limitation on lift end, 50% of max
+            }
+            else {
+                robot.dropBoi.setPower(gamepad2.right_stick_y * .20); //Base power on lift end, 20% of max
+            }
             telemetry.addData("Right Up Power", robot.rightUp.getPower());
             telemetry.addData("Left Up Power", robot.leftUp.getPower());
             telemetry.addData("Drop Power", robot.dropBoi.getPower());

@@ -140,10 +140,10 @@ public class GoodBotTeleop extends LinearOpMode {
 
 
             if (gamepad2.right_bumper){
-                robot.dropBoi.setPower(gamepad2.right_stick_y*.50);  //Remove some limitation on lift end, 50% of max
+                robot.dropBoi.setPower(-gamepad2.right_stick_y*.50);  //Remove some limitation on lift end, 50% of max
             }
             else {
-                robot.dropBoi.setPower(gamepad2.right_stick_y * .20); //Base power on lift end, 20% of max
+                robot.dropBoi.setPower(-gamepad2.right_stick_y * .20); //Base power on lift end, 20% of max
             }
             telemetry.addData("Right Up Power", robot.rightUp.getPower());
             telemetry.addData("Left Up Power", robot.leftUp.getPower());

@@ -63,10 +63,10 @@ public class DevBotHardware
     public DcMotor  rightRear   = null;
 
     //Lifty Boi
-    public DcMotor  leftUp      = null;
-    public DcMotor  rightUp     = null;
-    public DcMotor  dropBoi     = null;
-    public TouchSensor noBreak  = null;
+//    public DcMotor  leftUp      = null;
+//    public DcMotor  rightUp     = null;
+//    public DcMotor  dropBoi     = null;
+//    public TouchSensor noBreak  = null;
 
     /* local OpMode members. */
     HardwareMap hwMap           =  null;
@@ -92,13 +92,13 @@ public class DevBotHardware
         rightRear.setDirection(DcMotor.Direction.REVERSE);
         leftRear.setDirection(DcMotor.Direction.FORWARD);
 
-        leftUp      = hwMap.get(DcMotor.class, "left_lift");
-        rightUp     = hwMap.get(DcMotor.class, "right_lift");
-        dropBoi     = hwMap.get(DcMotor.class, "lift_end");
-        leftUp.setDirection(DcMotor.Direction.FORWARD);
-        rightUp.setDirection(DcMotor.Direction.REVERSE);
-        dropBoi.setDirection(DcMotor.Direction.FORWARD);
-        noBreak     = hwMap.get(TouchSensor.class, "button");
+//        leftUp      = hwMap.get(DcMotor.class, "left_lift");
+//        rightUp     = hwMap.get(DcMotor.class, "right_lift");
+//        dropBoi     = hwMap.get(DcMotor.class, "lift_end");
+//        leftUp.setDirection(DcMotor.Direction.FORWARD);
+//        rightUp.setDirection(DcMotor.Direction.REVERSE);
+//        dropBoi.setDirection(DcMotor.Direction.FORWARD);
+//        noBreak     = hwMap.get(TouchSensor.class, "button");
 
         // Set all motors to zero power
         leftFront.setPower(0);
@@ -106,9 +106,9 @@ public class DevBotHardware
         rightRear.setPower(0);
         leftRear.setPower(0);
 
-        leftUp.setPower(0);
-        rightUp.setPower(0);
-        dropBoi.setPower(0);
+//        leftUp.setPower(0);
+//        rightUp.setPower(0);
+//        dropBoi.setPower(0);
 
         // Set all motors to run without encoders.
         // May want to use RUN_USING_ENCODERS if encoders are installed.
@@ -117,20 +117,20 @@ public class DevBotHardware
         rightRear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         leftRear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        leftUp.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        rightUp.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        dropBoi.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+//        leftUp.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+//        rightUp.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+//        dropBoi.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         // Define and initialize ALL installed servos.
 
 
         //Reset lift position
-        while(!noBreak.isPressed()) {
-            rightUp.setPower(-.40);
-            leftUp.setPower(-.40);
-        }
-        rightUp.setPower(0);
-        leftUp.setPower(0);
+//        while(!noBreak.isPressed()) {
+//            rightUp.setPower(-.40);
+//            leftUp.setPower(-.40);
+//        }
+//        rightUp.setPower(0);
+//        leftUp.setPower(0);
 
         //TODO: Figure out how to reset drop position, encoders? ***TEST FURTHER: It resets itself?***
     }

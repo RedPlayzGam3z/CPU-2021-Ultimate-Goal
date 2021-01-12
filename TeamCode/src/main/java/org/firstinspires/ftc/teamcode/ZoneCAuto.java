@@ -54,15 +54,26 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Sherri Auto", group="Pushbot")
+@Autonomous(name="Sherri Auto, Zone C", group="Pushbot")
 //@Disabled
-public class Goodbot_Auto extends LinearOpMode {
+public class ZoneCAuto extends LinearOpMode {
 
     /* Declare OpMode members. */
     GoodBotHardware robot   = new GoodBotHardware();   // Use a Pushbot's hardware
     private ElapsedTime     runtime = new ElapsedTime();
 
-
+    public void mecanum_movement_2020(double forward,   //1 to go forward, -1 to go backwards
+                                      double turn,      //1 to turn right, -1 to turn left
+                                      double strafe) {  //1 to strafe right, -1 to strafe left
+        double leftFrontPower = forward + turn + strafe;
+        double leftRearPower = forward + turn - strafe;
+        double rightFrontPower = forward - turn - strafe;
+        double rightRearPower = forward - turn + strafe;
+        robot.leftFront.setPower(leftFrontPower);
+        robot.leftRear.setPower(leftRearPower);
+        robot.rightFront.setPower(rightFrontPower);
+        robot.rightRear.setPower(rightRearPower);
+    }
     @Override
     public void runOpMode() {
 
@@ -79,78 +90,26 @@ public class Goodbot_Auto extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
+        mecanum_movement_2020(1,0,0);   //Forward 1 second
+        sleep(5750);
 
+        mecanum_movement_2020(0,-.7,0);
+        sleep(700);
 
-        robot.leftFront.setPower(1);
-        robot.leftRear.setPower(1);
-        robot.rightFront.setPower(1);
-        robot.rightRear.setPower(1);
-        sleep(2000);
+        mecanum_movement_2020(1,0,0);
+        sleep(550);
 
-       robot.leftFront.setPower(0);
-        robot.leftRear.setPower(0);
-        robot.rightFront.setPower(0);
-        robot.rightRear.setPower(0);
-        sleep(1000);
+        mecanum_movement_2020(-1,0,0);
+        sleep(550);
 
-        robot.leftFront.setPower(1);
-        robot.leftRear.setPower(1);
-        robot.rightFront.setPower(-1);
-        robot.rightRear.setPower(-1);
-        sleep(900);
+        mecanum_movement_2020(0,.7,0);
+        sleep(550);
 
-        robot.leftFront.setPower(0);
-        robot.leftRear.setPower(0);
-        robot.rightFront.setPower(0);
-        robot.rightRear.setPower(0);
-        sleep(1000);
+        mecanum_movement_2020(-1,0,0);
+        sleep(1100);
 
-        robot.leftFront.setPower(1);
-        robot.leftRear.setPower(1);
-        robot.rightFront.setPower(1);
-        robot.rightRear.setPower(1);
-        sleep(1000);
-        
-        robot.leftFront.setPower(0);
-        robot.leftRear.setPower(0);
-        robot.rightFront.setPower(0);
-        robot.rightRear.setPower(0);
-        sleep(1000);
-
-
-        robot.leftFront.setPower(1);
-        robot.leftRear.setPower(1);
-        robot.rightFront.setPower(-1);
-        robot.rightRear.setPower(-1);
-        sleep(1900);
-
-
-        robot.leftFront.setPower(0);
-        robot.leftRear.setPower(0);
-        robot.rightFront.setPower(0);
-        robot.rightRear.setPower(0);
-        sleep(1000);
-
-        robot.leftFront.setPower(1);
-        robot.leftRear.setPower(1);
-        robot.rightFront.setPower(1);
-        robot.rightRear.setPower(1);
-        sleep(1000);
-
-        robot.leftFront.setPower(0);
-        robot.leftRear.setPower(0);
-        robot.rightFront.setPower(0);
-        robot.rightRear.setPower(0);
-        sleep(1000);
-
-
-        //robot.clawUp.setPower(0.5);
-        sleep(85);
-
-
-
-
+        mecanum_movement_2020(0,0,0);
 
     }
 
-    }
+}

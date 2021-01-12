@@ -29,36 +29,42 @@
 
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.util.Range;
-
-import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
- * This OpMode uses the common Pushbot hardware class to define the devices on the robot.
- * All device access is managed through the HardwarePushbot class.
+ * This file illustrates the concept of driving a path based on time.
+ * It uses the common Pushbot hardware class to define the drive on the robot.
  * The code is structured as a LinearOpMode
  *
- * This particular OpMode executes a POV Game style Teleop for a PushBot
- * In this mode the left stick moves the robot FWD and back, the Right stick turns left and right.
- * It raises and lowers the claw using the Gampad Y and A buttons respectively.
- * It also opens and closes the claws slowly using the left and right Bumper buttons.
+ * The code assumes that you do NOT have encoders on the wheels,
+ *   otherwise you would use: PushbotAutoDriveByEncoder;
+ *
+ *   The desired path in this example is:
+ *   - Drive forward for 3 seconds
+ *   - Spin right for 1.3 seconds
+ *   - Drive Backwards for 1 Second
+ *   - Stop and close the claw.
+ *
+ *  The code is written in a simple form with no optimizations.
+ *  However, there are several ways that this type of sequence could be streamlined,
  *
  * Use Android Studios to Copy this Class, and Paste it into your team's code folder with a new name.
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-
-@TeleOp(name="Devbot Teleop", group="Pushbot")
+@Autonomous(name="Sherri Auto, Zone B", group="Pushbot")
 //@Disabled
-public class DevBotTeleop extends LinearOpMode {
+public class ZoneBAuto extends LinearOpMode {
 
     /* Declare OpMode members. */
-    DevBotHardware robot           = new DevBotHardware();   // Use a Pushbot's hardware
+    GoodBotHardware robot   = new GoodBotHardware();   // Use a Pushbot's hardware
+    private ElapsedTime     runtime = new ElapsedTime();
 
-    public void mecanum_movement_2020(double forward, double turn, double strafe) {
+    public void mecanum_movement_2020(double forward,   //1 to go forward, -1 to go backwards
+                                      double turn,      //1 to turn right, -1 to turn left
+                                      double strafe) {  //1 to strafe right, -1 to strafe left
         double leftFrontPower = forward + turn + strafe;
         double leftRearPower = forward + turn - strafe;
         double rightFrontPower = forward - turn - strafe;
@@ -67,62 +73,37 @@ public class DevBotTeleop extends LinearOpMode {
         robot.leftRear.setPower(leftRearPower);
         robot.rightFront.setPower(rightFrontPower);
         robot.rightRear.setPower(rightRearPower);
-
-        telemetry.addData("Right Front Power:", rightFrontPower);
-        telemetry.addData("Left Front Power:", leftFrontPower);
-        telemetry.addData("Right Rear Power:", rightRearPower);
-        telemetry.addData("Left Rear Power:", leftRearPower);
-
     }
-
-//    public void lift_reset() {
-//        while(!robot.noBreak.isPressed()) {
-//            robot.rightUp.setPower(-.1);
-//            robot.leftUp.setPower(-.1);
-//        }
-//        robot.leftUp.setPower(0);
-//        robot.rightUp.setPower(0);
-//    }
-
     @Override
     public void runOpMode() {
-        /* Initialize the hardware variables.
+
+        /*
+         * Initialize the drive system variables.
          * The init() method of the hardware class does all the work here
          */
         robot.init(hardwareMap);
 
         // Send telemetry message to signify robot waiting;
-        telemetry.addData("Say", "Hello Driver");    //
+        telemetry.addData("Status", "Ready to run");    //
         telemetry.update();
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        // run until the end of the match (driver presses STOP)
-        while (opModeIsActive()) {
+        mecanum_movement_2020(1,0,0);
+        sleep(3000);
 
+        mecanum_movement_2020(0,.25,0);
+        sleep(1250);
 
-            mecanum_movement_2020(gamepad1.left_stick_y, -gamepad1.right_stick_x, -gamepad1.left_stick_x);
-            
+        mecanum_movement_2020(1,0,0);
+        sleep(2000);
 
-//            if(!robot.noBreak.isPressed()) {
-//                robot.rightUp.setPower(gamepad2.left_stick_y/4);
-//                robot.leftUp.setPower(gamepad2.left_stick_y/4);
-//                robot.dropBoi.setPower(-gamepad2.left_stick_y/4);
-//            }
-//            else if (robot.noBreak.isPressed() && (gamepad2.left_stick_y >= 0)) {
-//                robot.rightUp.setPower(gamepad2.left_stick_y/4);
-//                robot.leftUp.setPower(gamepad2.left_stick_y/4);
-//                robot.dropBoi.setPower(-gamepad2.left_stick_y/4);
-//            }
+        mecanum_movement_2020(-1,0,0);
+        sleep(500);
 
-//            robot.dropBoi.setPower(gamepad2.right_stick_y);
-//
-//            telemetry.addData("Right Up Power", robot.rightUp.getPower());
-//            telemetry.addData("Left Up Power", robot.leftUp.getPower());
-//            telemetry.addData("Drop Power", robot.dropBoi.getPower());
-//            telemetry.addData("Button is pressed: ", robot.noBreak.isPressed());
-              telemetry.update();
-        }
+        mecanum_movement_2020(0,0,0);
+
     }
+
 }

@@ -94,13 +94,13 @@ public class ZoneBAuto extends LinearOpMode {
         sleep(3000);
 
         mecanum_movement_2020(0,.25,0);
-        sleep(1250);
+        sleep(1500);
 
         mecanum_movement_2020(1,0,0);
-        sleep(2000);
+        sleep(1500);
 
         mecanum_movement_2020(-1,0,0);
-        sleep(500);
+        sleep(750);
 
         mecanum_movement_2020(0,0,0);
 

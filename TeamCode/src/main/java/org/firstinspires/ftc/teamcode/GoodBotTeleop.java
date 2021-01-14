@@ -32,7 +32,6 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
 //Hiii
 
 
@@ -56,8 +55,8 @@ public class GoodBotTeleop extends LinearOpMode {
 
     /* Declare OpMode members. */
     GoodBotHardware robot           = new GoodBotHardware();   // Use a Pushbot's hardware
-    double          clawOffset      = 0;                       // Servo mid position
-    final double    CLAW_SPEED      = 0.02 ;                   // sets rate to move servodh
+    boolean invert_lift = false;
+    boolean invert_drop = false;
     public void mecanum_movement_old(double x_power, double y_power, double z_power) {
         /*
         This block calculates the power needed at each wheel. An explanation for how it works can be
@@ -66,7 +65,7 @@ public class GoodBotTeleop extends LinearOpMode {
         double leftFrontPower = y_power - z_power - x_power;
         double leftRearPower = y_power - z_power + x_power;
         double rightFrontPower = y_power + z_power + x_power;
-        double rightRearPower = y_power + z_power - x_power;        // Send calculated power to wheels
+        double rightRearPower = y_power + z_power - x_power;
         robot.leftFront.setPower(leftFrontPower);
         robot.leftRear.setPower(leftRearPower);
         robot.rightFront.setPower(rightFrontPower);
@@ -112,44 +111,75 @@ public class GoodBotTeleop extends LinearOpMode {
 
             mecanum_movement_2020(-gamepad1.left_stick_y, gamepad1.right_stick_x, gamepad1.left_stick_x);
 
+            if (gamepad2.x && !invert_lift)     //Allows for toggling of inverted controls for the
+                invert_lift = true;                                                    //  main arm
+            else if (gamepad2.x && invert_lift)
+                invert_lift = false;
 
-            if (gamepad2.left_bumper && robot.noBreak.isPressed() && (gamepad2.left_stick_y >= 0)) {
+            if (gamepad2.y && !invert_drop)     //Allows for toggling of inverted controls for the
+                invert_drop = true;                                                  //    lift end
+            else if (gamepad2.y && invert_drop)
+                invert_drop = false;
+
+
+            if (gamepad2.left_bumper && robot.noBreak.isPressed() && (gamepad2.left_stick_y >= 0) && !invert_lift) {
+                robot.rightUp.setPower(gamepad2.left_stick_y*.50);
+                robot.leftUp.setPower(gamepad2.left_stick_y*.50);
+            }   // Above and below are the non-inverted, boosted controls of the main arm
+            else if (gamepad2.left_bumper && !robot.noBreak.isPressed() && !invert_lift) {
                 robot.rightUp.setPower(gamepad2.left_stick_y*.50);
                 robot.leftUp.setPower(gamepad2.left_stick_y*.50);
             }
-            else if (gamepad2.left_bumper && !robot.noBreak.isPressed()) {
-                robot.rightUp.setPower(gamepad2.left_stick_y*.50);
-                robot.leftUp.setPower(gamepad2.left_stick_y*.50);
+
+            else if (gamepad2.left_bumper && robot.noBreak.isPressed() && (gamepad2.left_stick_y <= 0) && invert_lift) {
+                robot.rightUp.setPower(-gamepad2.left_stick_y*.50);
+                robot.leftUp.setPower(-gamepad2.left_stick_y*.50);
+            }   // Above and below are the inverted, boosted controls of the main arm
+            else if (gamepad2.left_bumper && !robot.noBreak.isPressed() && invert_lift) {
+                robot.rightUp.setPower(-gamepad2.left_stick_y*.50);
+                robot.leftUp.setPower(-gamepad2.left_stick_y*.50);
             }
-//            else if (gamepad2.right_bumper && robot.noBreak.isPressed() && (gamepad2.left_stick_y >= 0)) {
-//                robot.rightUp.setPower(gamepad2.left_stick_y);
-//                robot.leftUp.setPower(gamepad2.left_stick_y);
-//            }
-//            else if (gamepad2.right_bumper && !robot.noBreak.isPressed()){
-//                robot.rightUp.setPower(gamepad2.left_stick_y);
-//                robot.leftUp.setPower(gamepad2.left_stick_y);
-//            }
-            else if(robot.noBreak.isPressed() && (gamepad2.left_stick_y >= 0)) {
+
+            else if(robot.noBreak.isPressed() && (gamepad2.left_stick_y >= 0) && !invert_lift) {
                 robot.rightUp.setPower(gamepad2.left_stick_y * .33);
                 robot.leftUp.setPower(gamepad2.left_stick_y * .33);
-            }
-            else if (!robot.noBreak.isPressed()) {
+            }   //Above and below are the non-inverted, non-boosted controls of the main arm
+            else if (!robot.noBreak.isPressed() && !invert_lift) {
                 robot.rightUp.setPower(gamepad2.left_stick_y*.33);
                 robot.leftUp.setPower(gamepad2.left_stick_y*.33);
             }
 
+            else if(robot.noBreak.isPressed() && (gamepad2.left_stick_y <= 0) && invert_lift) {
+                robot.rightUp.setPower(-gamepad2.left_stick_y * .33);
+                robot.leftUp.setPower(-gamepad2.left_stick_y * .33);
+            }   // Above and below are the inverted, non-boosted controls of the main arm
+            else if (!robot.noBreak.isPressed() && invert_lift) {
+                robot.rightUp.setPower(-gamepad2.left_stick_y*.33);
+                robot.leftUp.setPower(-gamepad2.left_stick_y*.33);
+            }
 
-            if (gamepad2.right_bumper){
-                robot.dropBoi.setPower(-gamepad2.right_stick_y*.50);  //Remove some limitation on lift end, 50% of max
+
+            if (gamepad2.right_bumper && !invert_drop){ //Boosted, non-inverted control of the lift end
+                robot.dropBoi.setPower(-gamepad2.right_stick_y*.50);
             }
-            else {
-                robot.dropBoi.setPower(-gamepad2.right_stick_y * .20); //Base power on lift end, 20% of max
+            else if (!invert_drop) {    //Non-boosted, non-inverted control of the lift end
+                robot.dropBoi.setPower(-gamepad2.right_stick_y * .20);
             }
-            telemetry.addData("Right Up Power", robot.rightUp.getPower());
-            telemetry.addData("Left Up Power", robot.leftUp.getPower());
-            telemetry.addData("Drop Power", robot.dropBoi.getPower());
+            else if (gamepad2.right_bumper && invert_drop){ //Boosted, inverted controls of the lift end
+                robot.dropBoi.setPower(gamepad2.right_stick_y*.50);
+            }
+            else if (invert_drop) {     //Non-boosted, inverted controls of the lift end
+                robot.dropBoi.setPower(gamepad2.right_stick_y * .20);
+            }
+
+            telemetry.addData("Right Up Power: ", robot.rightUp.getPower());
+            telemetry.addData("Left Up Power: ", robot.leftUp.getPower());
+            telemetry.addData("Drop Power: ", robot.dropBoi.getPower());
             telemetry.addData("Button is pressed: ", robot.noBreak.isPressed());
+            telemetry.addData("Invert Lift: ", invert_lift);
+            telemetry.addData("Invert Drop: ", invert_drop);
             telemetry.update();
+
 
 //            if(gamepad1.left_bumper)
 //            {

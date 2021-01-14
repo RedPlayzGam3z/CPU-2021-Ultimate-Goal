@@ -90,7 +90,7 @@ public class ZoneCAuto extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        mecanum_movement_2020(1,0,0);   //Forward 1 second
+        mecanum_movement_2020(1,0,0);
         sleep(5750);
 
         mecanum_movement_2020(0,-.7,0);

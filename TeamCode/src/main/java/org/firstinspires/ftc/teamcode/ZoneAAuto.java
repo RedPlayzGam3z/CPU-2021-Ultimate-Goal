@@ -87,8 +87,11 @@ public class ZoneAAuto extends LinearOpMode {
         telemetry.addData("Status", "Ready to run");    //
         telemetry.update();
 
+        //Do the hokey_pokey
+
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
+
 
         mecanum_movement_2020(1,0,0);   //Forward 1 second
         sleep(3000);

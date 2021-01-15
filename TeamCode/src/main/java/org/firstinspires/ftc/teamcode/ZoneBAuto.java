@@ -31,6 +31,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
@@ -90,19 +91,47 @@ public class ZoneBAuto extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        mecanum_movement_2020(1,0,0);
-        sleep(3000);
 
-        mecanum_movement_2020(0,.25,0);
-        sleep(1500);
+        //**This is a Test Code!**
 
-        mecanum_movement_2020(1,0,0);
-        sleep(1500);
+        // reset encoder counts kept by motors.
+        robot.leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.rightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.leftRear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.rightRear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        mecanum_movement_2020(-1,0,0);
-        sleep(750);
+        // set motors to run forward for 5000 encoder counts.
+        robot.leftFront.setTargetPosition(500000);
+        robot.rightFront.setTargetPosition(500000);
+        robot.leftRear.setTargetPosition(500000);
+        robot.rightRear.setTargetPosition(500000);
 
-        mecanum_movement_2020(0,0,0);
+        // set motors to run to target encoder position and stop with brakes on.
+        robot.leftFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.rightFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.rightRear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.leftRear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        //Setting Power to the Motors
+        robot.leftFront.setPower(1);
+        robot.rightFront.setPower(1);
+        robot.leftRear.setPower(1);
+        robot.rightRear.setPower(1);
+
+
+//        mecanum_movement_2020(1,0,0);
+//        sleep(3000);
+//
+//        mecanum_movement_2020(0,.25,0);
+//        sleep(1500);
+//
+//        mecanum_movement_2020(1,0,0);
+//        sleep(1500);
+//
+//        mecanum_movement_2020(-1,0,0);
+//        sleep(750);
+//
+//        mecanum_movement_2020(0,0,0);
 
     }
 

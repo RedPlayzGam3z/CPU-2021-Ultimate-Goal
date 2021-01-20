@@ -57,6 +57,13 @@ public class GoodBotHardware
 {
     /* Public OpMode members. */
     //Drive Motors
+
+    static final double     COUNTS_PER_MOTOR_REV    = 1440 ;    // eg: TETRIX Motor Encoder
+    static final double     DRIVE_GEAR_REDUCTION    = 60 ;     // This is < 1.0 if geared UP
+    static final double     WHEEL_DIAMETER_INCHES   = 4.0 ;     // For figuring circumference
+    static final double     COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
+            (WHEEL_DIAMETER_INCHES * 3.1415);
+
     public DcMotor  leftFront   = null;
     public DcMotor  rightFront  = null;
     public DcMotor  leftRear    = null;
@@ -65,7 +72,8 @@ public class GoodBotHardware
     //Lifty Boi
     public DcMotor  leftUp      = null;
     public DcMotor  rightUp     = null;
-    public DcMotor  dropBoi     = null;
+    //public DcMotor  dropBoi   = null;
+    public Servo dropBoi        = null;
     public TouchSensor noBreak  = null;
 
     //Flippy boy
@@ -118,17 +126,20 @@ public class GoodBotHardware
 
         leftUp      = hwMap.get(DcMotor.class, "left_lift");
         rightUp     = hwMap.get(DcMotor.class, "right_lift");
-        dropBoi     = hwMap.get(DcMotor.class, "lift_end");
+        //dropBoi     = hwMap.get(DcMotor.class, "lift_end");
         leftUp.setDirection(DcMotor.Direction.FORWARD);
         rightUp.setDirection(DcMotor.Direction.REVERSE);
-        dropBoi.setDirection(DcMotor.Direction.FORWARD);
+        //dropBoi.setDirection(DcMotor.Direction.FORWARD);
         noBreak     = hwMap.get(TouchSensor.class, "button");
 
         leftUp.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightUp.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        dropBoi.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        //dropBoi.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         // Define and initialize ALL installed servos.
+
+        dropBoi = hwMap.get(Servo.class, "lift_end");
+        dropBoi.setPosition(0);
 
         //clawGrip    = hwMap.get(CRServo.class, "clawGrip");
         //clawGrip.setPower(0);

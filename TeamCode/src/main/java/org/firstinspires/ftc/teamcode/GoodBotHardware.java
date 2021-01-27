@@ -29,9 +29,7 @@
 
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.TouchSensor;
@@ -81,7 +79,44 @@ public class GoodBotHardware
 
     /* local OpMode members. */
     HardwareMap hwMap           = null;
-    private ElapsedTime period  = new ElapsedTime();
+    private ElapsedTime runTime = new ElapsedTime();
+
+//    public void EncoderDrive(double speed,          //Speed of the motors
+//                             double rightInches,    //Distance for right motors to move
+//                             double leftInches,     //Distance for left motors to move
+//                             double timeoutSec){    //Force function timeout
+//        int leftFrontTarget;
+//        int rightFrontTarget;
+//        int leftRearTarget;
+//        int rightRearTarget;
+//
+//        //Determine
+//        leftFrontTarget = leftFront.getCurrentPosition() + (int)(leftInches*COUNTS_PER_INCH);
+//        leftRearTarget = leftRear.getCurrentPosition() + (int)(leftInches*COUNTS_PER_INCH);
+//        rightFrontTarget = rightFront.getCurrentPosition() + (int)(rightInches*COUNTS_PER_INCH);
+//        rightRearTarget = rightRear.getCurrentPosition() + (int)(rightInches*COUNTS_PER_INCH);
+//
+//        leftFront.setTargetPosition(leftFrontTarget);
+//        leftRear.setTargetPosition(leftRearTarget);
+//        rightFront.setTargetPosition(rightFrontTarget);
+//        rightRear.setTargetPosition(rightRearTarget);
+//
+//        leftFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//        leftRear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//        rightFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//        rightRear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//
+//        runTime.reset();
+//        leftFront.setPower(speed);
+//        leftRear.setPower(speed);
+//        rightFront.setPower(speed);
+//        rightRear.setPower(speed);
+//
+//        while (runTime.seconds() < timeoutSec && leftFront.isBusy() && leftRear.isBusy() &&
+//                rightFront.isBusy() && rightRear.isBusy()) {
+//        }
+//
+//    }
 
     /* Constructor */
     public GoodBotHardware(){
@@ -117,10 +152,14 @@ public class GoodBotHardware
 
         // Set all motors to run without encoders.
         // May want to use RUN_USING_ENCODERS if encoders are installed.
-        leftFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        rightFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        rightRear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        leftRear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftRear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightRear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightRear.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        leftRear.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         //clawUp.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         //yeet.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
@@ -139,7 +178,7 @@ public class GoodBotHardware
         // Define and initialize ALL installed servos.
 
         dropBoi = hwMap.get(Servo.class, "lift_end");
-        dropBoi.setPosition(0);
+        dropBoi.setPosition(1);
 
         //clawGrip    = hwMap.get(CRServo.class, "clawGrip");
         //clawGrip.setPower(0);

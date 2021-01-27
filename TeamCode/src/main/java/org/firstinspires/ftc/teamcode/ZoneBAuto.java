@@ -153,7 +153,7 @@ public class ZoneBAuto extends LinearOpMode {
 
         waitForStart();
 
-        EncoderDrive(1,50,50); //Forward
+        EncoderDrive(1,1,1); //Forward
 
         EncoderDrive(.25, -1.5, 1.5); //Turn to face zone B
 

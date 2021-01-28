@@ -182,11 +182,17 @@ public class ZoneAAuto extends LinearOpMode {
 
 
         EncoderDrive(1, 70,70); //Forward
+
         EncoderDrive(.25, 10, -10); //Turn to face zone A
+
         EncoderDrive(1,5,5); //Move into zone A
+
         EncoderDrive(1, -5,-5); //Move back onto the line
+
         EncoderDrive(1, -20,-20); // Move back for hokey poky
+
         EncoderDrive(1, -100,100); //Spin for hokey poky
+
         EncoderDrive(1, 20,20); // Park
     }
 

@@ -32,6 +32,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
 //Hiii
 
 
@@ -97,6 +98,7 @@ public class GoodBotTeleop extends LinearOpMode {
 
         robot.init(hardwareMap);
 
+
         // Send telemetry message to signify robot waiting;
         telemetry.addData("Say", "Hello Driver");    //
         telemetry.update();
@@ -158,7 +160,11 @@ public class GoodBotTeleop extends LinearOpMode {
                 robot.leftUp.setPower(-gamepad2.left_stick_y*.33);
             }
 
-            /** This section is for if dropBoi is set to be a motor */
+            /**
+             * This section is for if dropBoi is set to be a motor
+             *
+             * Bellow that, the ladder structure for dropBoi to be a servo, allowing for more precise control
+             */
 //            if (gamepad2.right_bumper && !invert_drop){ //Boosted, non-inverted control of the lift end
 //                robot.dropBoi.setPower(-gamepad2.right_stick_y*.50);
 //            }

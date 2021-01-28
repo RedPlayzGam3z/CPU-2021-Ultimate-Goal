@@ -153,27 +153,14 @@ public class ZoneBAuto extends LinearOpMode {
 
         waitForStart();
 
-        EncoderDrive(1,1,1); //Forward
+        EncoderDrive(1, 80,80); //Forward
 
-        EncoderDrive(.25, -1.5, 1.5); //Turn to face zone B
+        EncoderDrive(.25, -10, 10); //Turn to face zone B
 
-        EncoderDrive(1,12,12); //Move into zone B
+        EncoderDrive(1,14,14); //Move into zone B
 
-        EncoderDrive(1, -12,-12); //Move back onto the line
-//
-//        mecanum_movement_2020(1,0,0);
-//        sleep(3000);
-//
-//        mecanum_movement_2020(0,.25,0);
-//        sleep(1500);
-//
-//        mecanum_movement_2020(1,0,0);
-//        sleep(1500);
-//
-//        mecanum_movement_2020(-1,0,0);
-//        sleep(750);
-//
-//        mecanum_movement_2020(0,0,0);
+        EncoderDrive(1, -14,-14); //Move back onto the line
+
 
     }
 

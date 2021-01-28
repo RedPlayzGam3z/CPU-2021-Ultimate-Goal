@@ -31,6 +31,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
@@ -74,6 +75,67 @@ public class ZoneAAuto extends LinearOpMode {
         robot.rightFront.setPower(rightFrontPower);
         robot.rightRear.setPower(rightRearPower);
     }
+
+    public void EncoderDrive(double speed,          //Speed of the motors
+                             double rightInches,    //Distance for right motors to move
+                             double leftInches){     //Distance for left motors to move
+
+        int leftFrontTarget;
+        int rightFrontTarget;
+        int leftRearTarget;
+        int rightRearTarget;
+
+        //Determine
+        leftFrontTarget = robot.leftFront.getCurrentPosition() +
+                (int)(leftInches* GoodBotHardware.COUNTS_PER_INCH);
+        leftRearTarget = robot.leftRear.getCurrentPosition() +
+                (int)(leftInches* GoodBotHardware.COUNTS_PER_INCH);
+        rightFrontTarget = robot.rightFront.getCurrentPosition() +
+                (int)(rightInches* GoodBotHardware.COUNTS_PER_INCH);
+        rightRearTarget = robot.rightRear.getCurrentPosition() +
+                (int)(rightInches* GoodBotHardware.COUNTS_PER_INCH);
+
+        robot.leftFront.setTargetPosition(leftFrontTarget);
+        robot.leftRear.setTargetPosition(leftRearTarget);
+        robot.rightFront.setTargetPosition(rightFrontTarget);
+        robot.rightRear.setTargetPosition(rightRearTarget);
+
+        robot.leftFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.leftRear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.rightFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.rightRear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        runtime.reset();
+        robot.leftFront.setPower(speed);
+        robot.leftRear.setPower(speed);
+        robot.rightFront.setPower(speed);
+        robot.rightRear.setPower(speed);
+
+        while (opModeIsActive()  && (robot.leftFront.isBusy()  || robot.leftRear.isBusy() ||
+                robot.rightFront.isBusy() || robot.rightRear.isBusy())) {
+            telemetry.addData("RF Position: ", robot.rightFront.getCurrentPosition());
+            telemetry.addData("RF Target: ", robot.rightFront.getTargetPosition());
+            telemetry.addData("RR Position: ", robot.rightRear.getCurrentPosition());
+            telemetry.addData("RR Target: ", robot.rightRear.getTargetPosition());
+            telemetry.addData("LF Position: ", robot.leftFront.getCurrentPosition());
+            telemetry.addData("LF Target: ", robot.leftFront.getTargetPosition());
+            telemetry.addData("LR Position: ", robot.leftRear.getCurrentPosition());
+            telemetry.addData("LR Target: ", robot.leftRear.getTargetPosition());
+            telemetry.update();
+        }
+
+        robot.leftFront.setPower(0);
+        robot.leftRear.setPower(0);
+        robot.rightFront.setPower(0);
+        robot.rightRear.setPower(0);
+
+        robot.leftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.rightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.rightRear.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.leftRear.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+    }
+
     @Override
     public void runOpMode() {
 
@@ -87,12 +149,11 @@ public class ZoneAAuto extends LinearOpMode {
         telemetry.addData("Status", "Ready to run");    //
         telemetry.update();
 
-        //Do the hokey_pokey
-
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
 
+        //RIP Hokey Poky, Shall be missed
         mecanum_movement_2020(1,0,0);   //Forward 1 second
         sleep(3000);
 

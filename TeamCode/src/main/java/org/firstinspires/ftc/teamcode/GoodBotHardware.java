@@ -29,6 +29,7 @@
 
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -73,6 +74,8 @@ public class GoodBotHardware
     //public DcMotor  dropBoi   = null;
     public Servo dropBoi        = null;
     public TouchSensor noBreak  = null;
+    public Servo wobbleGrip    = null;
+    public CRServo wobbleUp   = null;
 
     //Flippy boy
     //public DcMotor  yeet        = null;

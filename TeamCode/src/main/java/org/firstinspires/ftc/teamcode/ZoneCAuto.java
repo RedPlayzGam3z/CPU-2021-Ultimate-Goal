@@ -151,10 +151,10 @@ public class ZoneCAuto extends LinearOpMode {
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
-        EncoderDrive(1, 85, 85);
-        EncoderDrive(1, 5, -5 );
-        EncoderDrive(1, 33, 33);
-        EncoderDrive(1, -47.5, -47.5);
+        EncoderDrive(1, 85, 85); //Moves forward
+        EncoderDrive(1, 5, -5 ); //Turns left
+        EncoderDrive(1, 33, 33); //Moves forward
+        EncoderDrive(1, -47.5, -47.5); //Moves background
 
     }
 

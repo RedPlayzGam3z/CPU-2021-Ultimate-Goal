@@ -77,8 +77,9 @@ public class GoodBotHardware
     public Servo wobbleGrip    = null;
     public CRServo wobbleUp   = null;
 
-    //Flippy boy
-    //public DcMotor  yeet        = null;
+    //Wobble Mover
+    public CRServo wobbleUp = null;
+    public Servo wobbleGrip = null;
 
     /* local OpMode members. */
     HardwareMap hwMap           = null;
@@ -183,6 +184,11 @@ public class GoodBotHardware
 
         dropBoi = hwMap.get(Servo.class, "lift_end");
         dropBoi.setPosition(1);
+        wobbleGrip = hwMap.get(Servo.class, "wobble_grip");
+        wobbleGrip.setPosition(0);
+
+        wobbleUp = hwMap.get(CRServo.class, "wobble_up");
+
 
         //clawGrip    = hwMap.get(CRServo.class, "clawGrip");
         //clawGrip.setPower(0);

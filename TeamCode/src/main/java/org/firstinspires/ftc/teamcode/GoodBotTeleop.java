@@ -188,6 +188,19 @@ public class GoodBotTeleop extends LinearOpMode {
                 robot.dropBoi.setPosition(robot.dropBoi.getPosition()+.001);
 
 
+            if (gamepad2.dpad_down)
+                robot.wobbleUp.setPower(-1);
+            else if (gamepad2.dpad_up)
+                robot.wobbleUp.setPower(1);
+            else
+                robot.wobbleUp.setPower(0);
+
+            if (gamepad2.dpad_left)
+                robot.wobbleGrip.setPosition(1);
+            else if (gamepad2.dpad_right)
+                robot.wobbleGrip.setPosition(0);
+
+
             telemetry.addData("Right Up Power: ", robot.rightUp.getPower());
             telemetry.addData("Left Up Power: ", robot.leftUp.getPower());
             //telemetry.addData("Drop Power: ", robot.dropBoi.getPower());

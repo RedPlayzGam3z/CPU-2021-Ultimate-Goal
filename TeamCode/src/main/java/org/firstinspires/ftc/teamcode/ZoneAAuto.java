@@ -154,32 +154,46 @@ public class ZoneAAuto extends LinearOpMode {
 
 
         //RIP Hokey Poky, Shall be missed
-        mecanum_movement_2020(1,0,0);   //Forward 1 second
-        sleep(3000);
+//        mecanum_movement_2020(1,0,0);   //Forward 1 second
+//        sleep(3000);
+//
+//        mecanum_movement_2020(0,-1,0);
+//        sleep(500);
+//
+//        mecanum_movement_2020(1,0,0);
+//        sleep(500);
+//
+//        mecanum_movement_2020(-1,0,0);
+//        sleep(500);
+//
+//        mecanum_movement_2020(0,1,0);
+//        sleep(500);
+//
+//        mecanum_movement_2020(-1,0,0);
+//        sleep(1000);
+//
+//        mecanum_movement_2020(0,1,0);
+//        sleep(500);
+//
+//        mecanum_movement_2020(1,0,0);
+//        sleep(2000);
+//
+//        mecanum_movement_2020(0,0,0);
 
-        mecanum_movement_2020(0,-1,0);
-        sleep(500);
 
-        mecanum_movement_2020(1,0,0);
-        sleep(500);
+        EncoderDrive(1, 70,70); //Forward
 
-        mecanum_movement_2020(-1,0,0);
-        sleep(500);
+        EncoderDrive(.25, 10, -10); //Turn to face zone A
 
-        mecanum_movement_2020(0,1,0);
-        sleep(500);
+        EncoderDrive(1,5,5); //Move into zone A
 
-        mecanum_movement_2020(-1,0,0);
-        sleep(1000);
+        EncoderDrive(1, -5,-5); //Move back onto the line
 
-        mecanum_movement_2020(0,1,0);
-        sleep(500);
+        EncoderDrive(1, -20,-20); // Move back for hokey poky
 
-        mecanum_movement_2020(1,0,0);
-        sleep(2000);
+        EncoderDrive(1, -100,100); //Spin for hokey poky
 
-        mecanum_movement_2020(0,0,0);
-
+        EncoderDrive(1, 20,20); // Park
     }
 
 }

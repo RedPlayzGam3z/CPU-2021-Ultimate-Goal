@@ -152,35 +152,9 @@ public class ZoneCAuto extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
         EncoderDrive(1, 85, 85);
-
         EncoderDrive(1, 5, -5 );
-
         EncoderDrive(1, 33, 33);
-
         EncoderDrive(1, -47.5, -47.5);
-
-
-
-
-//        mecanum_movement_2020(1,0,0);
-//        sleep(5750);
-//
-//        mecanum_movement_2020(0,-.7,0);
-//        sleep(700);
-//
-//        mecanum_movement_2020(1,0,0);
-//        sleep(550);
-//
-//        mecanum_movement_2020(-1,0,0);
-//        sleep(550);
-//
-//        mecanum_movement_2020(0,.7,0);
-//        sleep(550);
-//
-//        mecanum_movement_2020(-1,0,0);
-//        sleep(1100);
-//
-//        mecanum_movement_2020(0,0,0);
 
     }
 

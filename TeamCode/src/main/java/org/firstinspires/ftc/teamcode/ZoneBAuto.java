@@ -75,6 +75,67 @@ public class ZoneBAuto extends LinearOpMode {
         robot.rightFront.setPower(rightFrontPower);
         robot.rightRear.setPower(rightRearPower);
     }
+
+    public void EncoderDrive(double speed,          //Speed of the motors
+                             double rightInches,    //Distance for right motors to move
+                             double leftInches){     //Distance for left motors to move
+
+        int leftFrontTarget;
+        int rightFrontTarget;
+        int leftRearTarget;
+        int rightRearTarget;
+
+        //Determine
+        leftFrontTarget = robot.leftFront.getCurrentPosition() +
+                (int)(leftInches* GoodBotHardware.COUNTS_PER_INCH);
+        leftRearTarget = robot.leftRear.getCurrentPosition() +
+                (int)(leftInches* GoodBotHardware.COUNTS_PER_INCH);
+        rightFrontTarget = robot.rightFront.getCurrentPosition() +
+                (int)(rightInches* GoodBotHardware.COUNTS_PER_INCH);
+        rightRearTarget = robot.rightRear.getCurrentPosition() +
+                (int)(rightInches* GoodBotHardware.COUNTS_PER_INCH);
+
+        robot.leftFront.setTargetPosition(leftFrontTarget);
+        robot.leftRear.setTargetPosition(leftRearTarget);
+        robot.rightFront.setTargetPosition(rightFrontTarget);
+        robot.rightRear.setTargetPosition(rightRearTarget);
+
+        robot.leftFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.leftRear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.rightFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.rightRear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        runtime.reset();
+        robot.leftFront.setPower(speed);
+        robot.leftRear.setPower(speed);
+        robot.rightFront.setPower(speed);
+        robot.rightRear.setPower(speed);
+
+        while (opModeIsActive()  && (robot.leftFront.isBusy()  || robot.leftRear.isBusy() ||
+                                     robot.rightFront.isBusy() || robot.rightRear.isBusy())) {
+            telemetry.addData("RF Position: ", robot.rightFront.getCurrentPosition());
+            telemetry.addData("RF Target: ", robot.rightFront.getTargetPosition());
+            telemetry.addData("RR Position: ", robot.rightRear.getCurrentPosition());
+            telemetry.addData("RR Target: ", robot.rightRear.getTargetPosition());
+            telemetry.addData("LF Position: ", robot.leftFront.getCurrentPosition());
+            telemetry.addData("LF Target: ", robot.leftFront.getTargetPosition());
+            telemetry.addData("LR Position: ", robot.leftRear.getCurrentPosition());
+            telemetry.addData("LR Target: ", robot.leftRear.getTargetPosition());
+            telemetry.update();
+        }
+
+        robot.leftFront.setPower(0);
+        robot.leftRear.setPower(0);
+        robot.rightFront.setPower(0);
+        robot.rightRear.setPower(0);
+
+        robot.leftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.rightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.rightRear.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.leftRear.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+    }
+
     @Override
     public void runOpMode() {
 
@@ -89,36 +150,17 @@ public class ZoneBAuto extends LinearOpMode {
         telemetry.update();
 
         // Wait for the game to start (driver presses PLAY)
+
         waitForStart();
 
+        EncoderDrive(1,1,1); //Forward
 
-        //**This is a Test Code!**
+        EncoderDrive(.25, -1.5, 1.5); //Turn to face zone B
 
-        // reset encoder counts kept by motors.
-        robot.leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.rightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.leftRear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.rightRear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        EncoderDrive(1,12,12); //Move into zone B
 
-        // set motors to run forward for 5000 encoder counts.
-        robot.leftFront.setTargetPosition(500000);
-        robot.rightFront.setTargetPosition(500000);
-        robot.leftRear.setTargetPosition(500000);
-        robot.rightRear.setTargetPosition(500000);
-
-        // set motors to run to target encoder position and stop with brakes on.
-        robot.leftFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        robot.rightFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        robot.rightRear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        robot.leftRear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-        //Setting Power to the Motors
-        robot.leftFront.setPower(1);
-        robot.rightFront.setPower(1);
-        robot.leftRear.setPower(1);
-        robot.rightRear.setPower(1);
-
-
+        EncoderDrive(1, -12,-12); //Move back onto the line
+//
 //        mecanum_movement_2020(1,0,0);
 //        sleep(3000);
 //

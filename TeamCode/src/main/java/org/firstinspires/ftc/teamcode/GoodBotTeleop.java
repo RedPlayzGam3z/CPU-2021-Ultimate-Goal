@@ -158,23 +158,34 @@ public class GoodBotTeleop extends LinearOpMode {
                 robot.leftUp.setPower(-gamepad2.left_stick_y*.33);
             }
 
+            /** This section is for if dropBoi is set to be a motor */
+//            if (gamepad2.right_bumper && !invert_drop){ //Boosted, non-inverted control of the lift end
+//                robot.dropBoi.setPower(-gamepad2.right_stick_y*.50);
+//            }
+//            else if (!invert_drop) {    //Non-boosted, non-inverted control of the lift end
+//                robot.dropBoi.setPower(-gamepad2.right_stick_y * .20);
+//            }
+//            else if (gamepad2.right_bumper && invert_drop){ //Boosted, inverted controls of the lift end
+//                robot.dropBoi.setPower(gamepad2.right_stick_y*.50);
+//            }
+//            else if (invert_drop) {     //Non-boosted, inverted controls of the lift end
+//                robot.dropBoi.setPower(gamepad2.right_stick_y * .20);
+//            }
 
-            if (gamepad2.right_bumper && !invert_drop){ //Boosted, non-inverted control of the lift end
-                robot.dropBoi.setPower(-gamepad2.right_stick_y*.50);
-            }
-            else if (!invert_drop) {    //Non-boosted, non-inverted control of the lift end
-                robot.dropBoi.setPower(-gamepad2.right_stick_y * .20);
-            }
-            else if (gamepad2.right_bumper && invert_drop){ //Boosted, inverted controls of the lift end
-                robot.dropBoi.setPower(gamepad2.right_stick_y*.50);
-            }
-            else if (invert_drop) {     //Non-boosted, inverted controls of the lift end
-                robot.dropBoi.setPower(gamepad2.right_stick_y * .20);
-            }
+            if (robot.dropBoi.getPosition() < 1 && gamepad2.right_stick_y > 0 && !invert_drop)
+                robot.dropBoi.setPosition(robot.dropBoi.getPosition()+.001);
+            else if (robot.dropBoi.getPosition() > 0 && gamepad2.right_stick_y < 0 && !invert_drop)
+                robot.dropBoi.setPosition(robot.dropBoi.getPosition()-.001);
+            else if (robot.dropBoi.getPosition() > 0 && gamepad2.right_stick_y > 0 && invert_drop)
+                robot.dropBoi.setPosition(robot.dropBoi.getPosition()-.001);
+            else if (robot.dropBoi.getPosition() < 1 && gamepad2.right_stick_y < 0 && invert_drop)
+                robot.dropBoi.setPosition(robot.dropBoi.getPosition()+.001);
+
 
             telemetry.addData("Right Up Power: ", robot.rightUp.getPower());
             telemetry.addData("Left Up Power: ", robot.leftUp.getPower());
-            telemetry.addData("Drop Power: ", robot.dropBoi.getPower());
+            //telemetry.addData("Drop Power: ", robot.dropBoi.getPower());
+            telemetry.addData("Drop Position: ", robot.dropBoi.getPosition());
             telemetry.addData("Button is pressed: ", robot.noBreak.isPressed());
             telemetry.addData("Invert Lift: ", invert_lift);
             telemetry.addData("Invert Drop: ", invert_drop);

@@ -74,12 +74,10 @@ public class GoodBotHardware
     //public DcMotor  dropBoi   = null;
     public Servo dropBoi        = null;
     public TouchSensor noBreak  = null;
-    public Servo wobbleGrip    = null;
-    public CRServo wobbleUp   = null;
 
     //Wobble Mover
-    public CRServo wobbleUp = null;
-    public Servo wobbleGrip = null;
+//    public CRServo wobbleUp = null;
+//    public Servo wobbleGrip = null;
 
     /* local OpMode members. */
     HardwareMap hwMap           = null;
@@ -182,12 +180,12 @@ public class GoodBotHardware
 
         // Define and initialize ALL installed servos.
 
-        dropBoi = hwMap.get(Servo.class, "lift_end");
-        dropBoi.setPosition(1);
-        wobbleGrip = hwMap.get(Servo.class, "wobble_grip");
-        wobbleGrip.setPosition(0);
+//        dropBoi = hwMap.get(Servo.class, "lift_end");
+//        dropBoi.setPosition(1);
+//        wobbleGrip = hwMap.get(Servo.class, "wobble_grip");
+//        wobbleGrip.setPosition(1);
 
-        wobbleUp = hwMap.get(CRServo.class, "wobble_up");
+        //wobbleUp = hwMap.get(CRServo.class, "wobble_up");
 
 
         //clawGrip    = hwMap.get(CRServo.class, "clawGrip");

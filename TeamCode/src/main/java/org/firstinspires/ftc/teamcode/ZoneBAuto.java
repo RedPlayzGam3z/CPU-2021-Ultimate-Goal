@@ -81,7 +81,7 @@ public class ZoneBAuto extends LinearOpMode {
                              double rightInches,    //Distance for right motors to move
                              double leftInches){     //Distance for left motors to move
 
-        int leftFrontTarget;
+        int leftFrontTarget; //Variables to define where the motors will drive to
         int rightFrontTarget;
         int leftRearTarget;
         int rightRearTarget;

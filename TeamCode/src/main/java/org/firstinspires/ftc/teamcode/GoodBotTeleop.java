@@ -58,6 +58,7 @@ public class GoodBotTeleop extends LinearOpMode {
     GoodBotHardware robot           = new GoodBotHardware();   // Use a Pushbot's hardware
     boolean invert_lift = false;
     boolean invert_drop = false;
+    double contPower    = .5 ;
     public void mecanum_movement_old(double x_power, double y_power, double z_power) {
         /*
         This block calculates the power needed at each wheel. An explanation for how it works can be
@@ -179,26 +180,28 @@ public class GoodBotTeleop extends LinearOpMode {
 //            }
 
             if (robot.dropBoi.getPosition() < 1 && gamepad2.right_stick_y > 0 && !invert_drop)
-                robot.dropBoi.setPosition(robot.dropBoi.getPosition()+.001);
+                robot.dropBoi.setPosition(robot.dropBoi.getPosition()+.005);
             else if (robot.dropBoi.getPosition() > 0 && gamepad2.right_stick_y < 0 && !invert_drop)
-                robot.dropBoi.setPosition(robot.dropBoi.getPosition()-.001);
+                robot.dropBoi.setPosition(robot.dropBoi.getPosition()-.005);
             else if (robot.dropBoi.getPosition() > 0 && gamepad2.right_stick_y > 0 && invert_drop)
-                robot.dropBoi.setPosition(robot.dropBoi.getPosition()-.001);
+                robot.dropBoi.setPosition(robot.dropBoi.getPosition()-.005);
             else if (robot.dropBoi.getPosition() < 1 && gamepad2.right_stick_y < 0 && invert_drop)
-                robot.dropBoi.setPosition(robot.dropBoi.getPosition()+.001);
+                robot.dropBoi.setPosition(robot.dropBoi.getPosition()+.005);
 
 
-            if (gamepad2.dpad_down)
-                robot.wobbleUp.setPower(-1);
-            else if (gamepad2.dpad_up)
-                robot.wobbleUp.setPower(1);
-            else
-                robot.wobbleUp.setPower(0);
+//            if (gamepad2.dpad_down)
+//                contPower = 0;
+//            else if (gamepad2.dpad_up)
+//                contPower = 1;
+//            else
+//                contPower = .5;
 
-            if (gamepad2.dpad_left)
-                robot.wobbleGrip.setPosition(1);
-            else if (gamepad2.dpad_right)
-                robot.wobbleGrip.setPosition(0);
+//            robot.wobbleUp.setPower(contPower);
+//
+//            if (gamepad2.dpad_left)
+//                robot.wobbleGrip.setPosition(1);
+//            else if (gamepad2.dpad_right)
+//                robot.wobbleGrip.setPosition(0);
 
 
             telemetry.addData("Right Up Power: ", robot.rightUp.getPower());

@@ -191,6 +191,7 @@ public class GoodBotHardware
 
         wobbleUp = hwMap.get(CRServo.class, "wobble_up");
         wobbleUp.setDirection(DcMotorSimple.Direction.FORWARD);
+        wobbleUp.setPower(-1);
 
 
         //clawGrip    = hwMap.get(CRServo.class, "clawGrip");

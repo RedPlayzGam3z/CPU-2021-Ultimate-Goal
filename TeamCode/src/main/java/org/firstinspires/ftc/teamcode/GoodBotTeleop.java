@@ -58,6 +58,7 @@ public class GoodBotTeleop extends LinearOpMode {
     GoodBotHardware robot           = new GoodBotHardware();   // Use a Pushbot's hardware
     boolean invert_lift = false;
     boolean invert_drop = false;
+    int inputLimit = 0;
     double contPower    = .5 ;
     public void mecanum_movement_old(double x_power, double y_power, double z_power) {
         /*
@@ -114,15 +115,26 @@ public class GoodBotTeleop extends LinearOpMode {
 
             mecanum_movement_2020(-gamepad1.left_stick_y, gamepad1.right_stick_x, gamepad1.left_stick_x);
 
-            if (gamepad2.x && !invert_lift)     //Allows for toggling of inverted controls for the
-                invert_lift = true;                                                    //  main arm
-            else if (gamepad2.x && invert_lift)
+            if (gamepad2.x && !invert_lift && inputLimit == 0) {     //Allows for toggling of inverted controls for the
+                invert_lift = true;                                                //  main arm
+                inputLimit = 20;
+            }
+            else if (gamepad2.x && invert_lift && inputLimit == 0) {
                 invert_lift = false;
+                inputLimit = 20;
+            }
 
-            if (gamepad2.y && !invert_drop)     //Allows for toggling of inverted controls for the
+            if (gamepad2.y && !invert_drop && inputLimit == 0) {     //Allows for toggling of inverted controls for the
                 invert_drop = true;                                                  //    lift end
-            else if (gamepad2.y && invert_drop)
+                inputLimit = 20;
+            }
+            else if (gamepad2.y && invert_drop && inputLimit == 0) {
                 invert_drop = false;
+                inputLimit = 20;
+            }
+
+            if (inputLimit > 0)
+                inputLimit -= 1;
 
 
             if (gamepad2.left_bumper && robot.noBreak.isPressed() && (gamepad2.left_stick_y >= 0) && !invert_lift) {
@@ -194,16 +206,19 @@ public class GoodBotTeleop extends LinearOpMode {
 //            else if (gamepad2.dpad_up)
 //                contPower = 1;
 //            else
-//                contPower = .5;
-
-//            robot.wobbleUp.setPower(contPower);
+//                contPower = 0;
 //
-//            if (gamepad2.dpad_left)
-//                robot.wobbleGrip.setPosition(1);
-//            else if (gamepad2.dpad_right)
-//                robot.wobbleGrip.setPosition(0);
+//            robot.wobbleUp.setPower(contPower);
 
+            robot.wobbleUp.setPower(gamepad2.right_trigger);
 
+            if (gamepad2.dpad_left)
+                robot.wobbleGrip.setPosition(1);
+            else if (gamepad2.dpad_right)
+                robot.wobbleGrip.setPosition(0);
+
+            telemetry.addData("Wobble Up Position : ", robot.wobbleUp.getPower());
+            telemetry.addData("Counter at: ", inputLimit);
             telemetry.addData("Right Up Power: ", robot.rightUp.getPower());
             telemetry.addData("Left Up Power: ", robot.leftUp.getPower());
             //telemetry.addData("Drop Power: ", robot.dropBoi.getPower());

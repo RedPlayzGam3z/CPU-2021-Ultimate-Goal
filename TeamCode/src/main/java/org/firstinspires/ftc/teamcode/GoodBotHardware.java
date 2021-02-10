@@ -29,8 +29,10 @@
 
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.TouchSensor;
@@ -75,9 +77,11 @@ public class GoodBotHardware
     public Servo dropBoi        = null;
     public TouchSensor noBreak  = null;
 
-    //Wobble Mover
-//    public CRServo wobbleUp = null;
-//    public Servo wobbleGrip = null;
+    // Wobble Mover
+    public CRServo wobbleUp = null;
+    public Servo wobbleGrip = null;
+
+    public RevBlinkinLedDriver lights = null;
 
     /* local OpMode members. */
     HardwareMap hwMap           = null;
@@ -180,17 +184,20 @@ public class GoodBotHardware
 
         // Define and initialize ALL installed servos.
 
-//        dropBoi = hwMap.get(Servo.class, "lift_end");
-//        dropBoi.setPosition(1);
-//        wobbleGrip = hwMap.get(Servo.class, "wobble_grip");
-//        wobbleGrip.setPosition(1);
+        dropBoi = hwMap.get(Servo.class, "lift_end");
+        dropBoi.setPosition(1);
+        wobbleGrip = hwMap.get(Servo.class, "wobble_grip");
+        wobbleGrip.setPosition(1);
 
-        //wobbleUp = hwMap.get(CRServo.class, "wobble_up");
+        wobbleUp = hwMap.get(CRServo.class, "wobble_up");
+        wobbleUp.setDirection(DcMotorSimple.Direction.FORWARD);
 
 
         //clawGrip    = hwMap.get(CRServo.class, "clawGrip");
         //clawGrip.setPower(0);
 
+        lights = hwMap.get(RevBlinkinLedDriver.class, "led");
+        lights.setPattern(RevBlinkinLedDriver.BlinkinPattern.BLUE_VIOLET);
 
 
         while(!noBreak.isPressed()) {

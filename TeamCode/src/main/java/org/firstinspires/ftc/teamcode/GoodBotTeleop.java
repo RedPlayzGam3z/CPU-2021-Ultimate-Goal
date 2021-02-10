@@ -59,7 +59,7 @@ public class GoodBotTeleop extends LinearOpMode {
     boolean invert_lift = false;
     boolean invert_drop = false;
     int inputLimit = 0;
-    double contPower    = .5 ;
+    double contPower    =0;
     public void mecanum_movement_old(double x_power, double y_power, double z_power) {
         /*
         This block calculates the power needed at each wheel. An explanation for how it works can be
@@ -210,13 +210,22 @@ public class GoodBotTeleop extends LinearOpMode {
 //
 //            robot.wobbleUp.setPower(contPower);
 
-            robot.wobbleUp.setPower(gamepad2.right_trigger);
+            if (gamepad2.right_trigger > 0)
+                contPower = -gamepad2.right_trigger;
+            else if (gamepad2.left_trigger > 0)
+                contPower = gamepad2.left_trigger;
+            else
+                contPower = 0;
+
+            robot.wobbleUp.setPower(contPower);
 
             if (gamepad2.dpad_left)
                 robot.wobbleGrip.setPosition(1);
             else if (gamepad2.dpad_right)
                 robot.wobbleGrip.setPosition(0);
 
+            telemetry.addData("Right Trigger: ", gamepad2.right_trigger);
+            telemetry.addData("Left Trigger: ", gamepad2.left_trigger);
             telemetry.addData("Wobble Up Position : ", robot.wobbleUp.getPower());
             telemetry.addData("Counter at: ", inputLimit);
             telemetry.addData("Right Up Power: ", robot.rightUp.getPower());

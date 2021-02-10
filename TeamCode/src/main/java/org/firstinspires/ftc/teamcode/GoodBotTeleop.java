@@ -220,6 +220,8 @@ public class GoodBotTeleop extends LinearOpMode {
             else if (gamepad2.dpad_right)
                 robot.wobbleGrip.setPosition(0);
 
+
+
             telemetry.addData("Right Trigger: ", gamepad2.right_trigger);
             telemetry.addData("Left Trigger: ", gamepad2.left_trigger);
             telemetry.addData("Wobble Up Position : ", robot.wobbleUp.getPower());
@@ -232,6 +234,19 @@ public class GoodBotTeleop extends LinearOpMode {
             telemetry.addData("Invert Lift: ", invert_lift);
             telemetry.addData("Invert Drop: ", invert_drop);
             telemetry.update();
+
+            if (gamepad2.left_stick_button)
+                robot.lights.setPosition(0.35);
+            else if (gamepad2.right_stick_button)
+                robot.lights.setPosition(0.31);
+            if (gamepad2.left_bumper)
+                robot.lights.setPosition(0.57);
+            else if (gamepad2.right_bumper)
+                robot.lights.setPosition((0.21));
+
+
+
+
 
 
 //            if(gamepad1.left_bumper)

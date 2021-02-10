@@ -81,7 +81,7 @@ public class GoodBotHardware
     public CRServo wobbleUp = null;
     public Servo wobbleGrip = null;
 
-    public RevBlinkinLedDriver lights = null;
+    public Servo lights = null;
 
     /* local OpMode members. */
     HardwareMap hwMap           = null;
@@ -197,8 +197,7 @@ public class GoodBotHardware
         //clawGrip    = hwMap.get(CRServo.class, "clawGrip");
         //clawGrip.setPower(0);
 
-        lights = hwMap.get(RevBlinkinLedDriver.class, "led");
-        lights.setPattern(RevBlinkinLedDriver.BlinkinPattern.BLUE_VIOLET);
+        lights = hwMap.get(Servo.class, "led");
 
 
         while(!noBreak.isPressed()) {

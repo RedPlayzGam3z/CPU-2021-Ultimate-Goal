@@ -236,13 +236,13 @@ public class GoodBotTeleop extends LinearOpMode {
             telemetry.update();
 
             if (gamepad2.left_stick_button)
-                robot.lights.setPosition(0.35);
+                robot.lights.setPosition(0.51);
             else if (gamepad2.right_stick_button)
                 robot.lights.setPosition(0.31);
             else if (gamepad2.left_bumper)
-                robot.lights.setPosition(0.61);
+                robot.lights.setPosition(0.59);
             else if (gamepad2.right_bumper)
-                robot.lights.setPosition(0.87);
+                robot.lights.setPosition(0.83);
 
 
 

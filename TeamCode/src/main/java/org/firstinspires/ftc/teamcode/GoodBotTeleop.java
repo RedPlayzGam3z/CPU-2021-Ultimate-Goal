@@ -61,6 +61,7 @@ public class GoodBotTeleop extends LinearOpMode {
     int inputLimit = 0;
     double contPower;
     double[] colors = {.47, .31, .63, .89};
+    int colorState = 0;
     public void mecanum_movement_old(double x_power, double y_power, double z_power) {
         /*
         This block calculates the power needed at each wheel. An explanation for how it works can be
@@ -231,14 +232,14 @@ public class GoodBotTeleop extends LinearOpMode {
                 robot.wobbleGrip.setPosition(0);
 
                 //Lights
-            if (gamepad2.left_stick_button)
-                robot.lights.setPosition(0.47);
-            else if (gamepad2.right_stick_button)
-                robot.lights.setPosition(0.31);
-            else if (gamepad2.left_bumper)
-                robot.lights.setPosition(0.63);
-            else if (gamepad2.right_bumper)
-                robot.lights.setPosition(0.89);
+            if (gamepad2.right_bumper && inputLimit == 0) {
+                colorState += 1;
+                if (colorState >= colors.length)
+                    colorState = 0;
+                inputLimit = 20;
+            }
+
+            robot.lights.setPosition(colors[colorState]);
 
                 //Absolute mess of telemetry data
             telemetry.addData("Right Trigger: ", gamepad2.right_trigger);

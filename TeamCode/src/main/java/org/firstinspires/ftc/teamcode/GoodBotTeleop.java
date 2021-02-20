@@ -173,10 +173,14 @@ public class GoodBotTeleop extends LinearOpMode {
                 robot.leftUp.setPower(-gamepad2.left_stick_y*.33);
             }
 
+
             /**
              * This section is for if dropBoi is set to be a motor
              *
              * Bellow that, the ladder structure for dropBoi to be a servo, allowing for more precise control
+             *
+             * Bellow that, the ability for dropBoi to be a CRServo, this still needs work and
+             *    wont be needed
              */
 //            if (gamepad2.right_bumper && !invert_drop){ //Boosted, non-inverted control of the lift end
 //                robot.dropBoi.setPower(-gamepad2.right_stick_y*.50);
@@ -200,6 +204,13 @@ public class GoodBotTeleop extends LinearOpMode {
             else if (robot.dropBoi.getPosition() < 1 && gamepad2.right_stick_y < 0 && invert_drop)
                 robot.dropBoi.setPosition(robot.dropBoi.getPosition()+.005);
 
+            //contPower2 = contPower2 + gamepad2.right_stick_y;
+            //if (contPower2 > 1)
+                //contPower2 = 1;
+            //else if (contPower2 < -1)
+                //contPower2 = -1;
+            //robot.dropBoi.setPower(contPower2);
+
 
 //            if (gamepad2.dpad_down)
 //                contPower = 0;
@@ -210,12 +221,10 @@ public class GoodBotTeleop extends LinearOpMode {
 //
 //            robot.wobbleUp.setPower(contPower);
 
-            contPower = (gamepad2.right_trigger*2) - 1;
+            contPower = (gamepad2.right_trigger*2) - 1; //Convert 0-1 range to -1-1 range
+            robot.wobbleUp.setPower(contPower); //Pass calculated power to the CRServo
 
-
-            robot.wobbleUp.setPower(contPower);
-
-            if (gamepad2.dpad_left)
+            if (gamepad2.dpad_left)     //Open and close the servo to grip the wobble goal
                 robot.wobbleGrip.setPosition(1);
             else if (gamepad2.dpad_right)
                 robot.wobbleGrip.setPosition(0);
@@ -228,7 +237,7 @@ public class GoodBotTeleop extends LinearOpMode {
                 robot.lights.setPosition(0.63);
             else if (gamepad2.right_bumper)
                 robot.lights.setPosition(0.89);
-
+                //Absolute mess of telemetry data
             telemetry.addData("Right Trigger: ", gamepad2.right_trigger);
             telemetry.addData("Left Trigger: ", gamepad2.left_trigger);
             telemetry.addData("Wobble Up Position : ", robot.wobbleUp.getPower());

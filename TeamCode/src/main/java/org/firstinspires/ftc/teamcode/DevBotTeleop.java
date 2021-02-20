@@ -103,26 +103,10 @@ public class DevBotTeleop extends LinearOpMode {
 
 
             mecanum_movement_2020(gamepad1.left_stick_y, -gamepad1.right_stick_x, -gamepad1.left_stick_x);
-            
 
-//            if(!robot.noBreak.isPressed()) {
-//                robot.rightUp.setPower(gamepad2.left_stick_y/4);
-//                robot.leftUp.setPower(gamepad2.left_stick_y/4);
-//                robot.dropBoi.setPower(-gamepad2.left_stick_y/4);
-//            }
-//            else if (robot.noBreak.isPressed() && (gamepad2.left_stick_y >= 0)) {
-//                robot.rightUp.setPower(gamepad2.left_stick_y/4);
-//                robot.leftUp.setPower(gamepad2.left_stick_y/4);
-//                robot.dropBoi.setPower(-gamepad2.left_stick_y/4);
-//            }
 
-//            robot.dropBoi.setPower(gamepad2.right_stick_y);
-//
-//            telemetry.addData("Right Up Power", robot.rightUp.getPower());
-//            telemetry.addData("Left Up Power", robot.leftUp.getPower());
-//            telemetry.addData("Drop Power", robot.dropBoi.getPower());
-//            telemetry.addData("Button is pressed: ", robot.noBreak.isPressed());
-              telemetry.update();
+
+            telemetry.update();
         }
     }
 }

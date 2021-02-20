@@ -60,7 +60,7 @@ public class GoodBotTeleop extends LinearOpMode {
     boolean invert_drop = false;
     int inputLimit = 0;
     double contPower;
-    double[] colors = {.47, .31, .63, .89};
+    double[] colors = {.47, .31, .63, .89}; //Add colors here, no additional changes needed to add them
     int colorState = 0;
     public void mecanum_movement_old(double x_power, double y_power, double z_power) {
         /*

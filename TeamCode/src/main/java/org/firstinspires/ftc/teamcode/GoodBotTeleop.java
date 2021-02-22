@@ -30,7 +30,6 @@
 package org.firstinspires.ftc.teamcode;
 // This is a test.
 
-import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -229,24 +228,15 @@ public class GoodBotTeleop extends LinearOpMode {
                 robot.wobbleGrip.setPosition(1);
             else if (gamepad2.dpad_right)
                 robot.wobbleGrip.setPosition(0);
-            // Lights
-//            if (gamepad2.left_stick_button)
-//                robot.lights.setPosition(0.47);
-//            else if (gamepad2.right_stick_button)
-//                robot.lights.setPosition(0.31);
-//            else if (gamepad2.left_bumper)
-//                robot.lights.setPosition(0.63);
-//            else if (gamepad2.right_bumper)
-//                robot.lights.setPosition(0.89);
 
-                //lights 2.0
-            if (gamepad1.left_stick_button)
-                robot.flash.setPattern(RevBlinkinLedDriver.BlinkinPattern.fromNumber(80));
-            else if (gamepad1.right_stick_button)
-                robot.flash.setPattern(RevBlinkinLedDriver.BlinkinPattern.fromNumber(86));
-
-
-
+            if (gamepad2.left_stick_button)
+                robot.lights.setPosition(0.47);
+            else if (gamepad2.right_stick_button)
+                robot.lights.setPosition(0.31);
+            else if (gamepad2.left_bumper)
+                robot.lights.setPosition(0.63);
+            else if (gamepad2.right_bumper)
+                robot.lights.setPosition(0.89);
                 //Absolute mess of telemetry data
             telemetry.addData("Right Trigger: ", gamepad2.right_trigger);
             telemetry.addData("Left Trigger: ", gamepad2.left_trigger);

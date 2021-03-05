@@ -30,9 +30,12 @@
 package org.firstinspires.ftc.teamcode;
 // This is a test.
 
+import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+
+import static com.qualcomm.hardware.rev.RevBlinkinLedDriver.*;
 //Hiii
 
 
@@ -60,6 +63,8 @@ public class GoodBotTeleop extends LinearOpMode {
     boolean invert_drop = false;
     int inputLimit = 0;
     double contPower;
+
+
     public void mecanum_movement_old(double x_power, double y_power, double z_power) {
         /*
         This block calculates the power needed at each wheel. An explanation for how it works can be
@@ -238,10 +243,8 @@ public class GoodBotTeleop extends LinearOpMode {
 //            else if (gamepad2.right_bumper)
 //                robot.lights.setPosition(0.89);
 
-            //lights 2.0
-            if (gamepad1.left_stick_button)
-                robot.
-
+            if (gamepad2.right_stick_button)
+                robot.flash.setPattern(BlinkinPattern.fromNumber(89));
 
 
 

@@ -63,6 +63,7 @@ public class GoodBotTeleop extends LinearOpMode {
     boolean invert_drop = false;
     int inputLimit = 0;
     double contPower;
+    int x = 1;
 
 
     public void mecanum_movement_old(double x_power, double y_power, double z_power) {
@@ -243,12 +244,21 @@ public class GoodBotTeleop extends LinearOpMode {
 //            else if (gamepad2.right_bumper)
 //                robot.lights.setPosition(0.89);
 
-            if (gamepad2.right_stick_button)
-                robot.flash.setPattern(BlinkinPattern.fromNumber(89));
+
+//            if (gamepad2.right_bumper && inputLimit == 0) {
+//                inputLimit = 100;
+//                x++;
+//                if (x>100)
+//                    x=1;
+//                robot.flash.setPattern(BlinkinPattern.fromNumber(x));
+//            }
+
+            
 
 
 
                 //Absolute mess of telemetry data
+            telemetry.addData("Light Pattern: ", x);
             telemetry.addData("Right Trigger: ", gamepad2.right_trigger);
             telemetry.addData("Left Trigger: ", gamepad2.left_trigger);
             telemetry.addData("Wobble Up Position : ", robot.wobbleUp.getPower());

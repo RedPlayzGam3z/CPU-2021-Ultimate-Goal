@@ -86,7 +86,7 @@ public class GoodBotHardware
 
     /* local OpMode members. */
     HardwareMap hwMap           = null;
-    private ElapsedTime runTime = new ElapsedTime();
+    public ElapsedTime runTime = new ElapsedTime();
 
 //    public void EncoderDrive(double speed,          //Speed of the motors
 //                             double rightInches,    //Distance for right motors to move
@@ -200,6 +200,7 @@ public class GoodBotHardware
 
         //lights = hwMap.get(Servo.class, "led");
         flash = hwMap.get(RevBlinkinLedDriver.class,"fun");
+        flash.setPattern(RevBlinkinLedDriver.BlinkinPattern.fromNumber(1));
 
 
 

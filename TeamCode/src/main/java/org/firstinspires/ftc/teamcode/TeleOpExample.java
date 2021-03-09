@@ -49,7 +49,7 @@ import com.qualcomm.robotcore.util.Hardware;
  */
 
 
-@TeleOp(name="Devbot Teleop", group="Pushbot")
+@TeleOp(name="TeleopExample", group="Examples")
 @Disabled
 public class TeleOpExample extends LinearOpMode {
 
